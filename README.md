@@ -16,8 +16,8 @@ Data Structures and Algorithms interview preparation using Python.
 
 ### Statistics
 
-- Problems completed: **1**
-- Easy: **1**
+- Problems completed: **2**
+- Easy: **2**
 - Medium: **0**
 - Hard: **0**
 - Total reviews: **0**
@@ -28,6 +28,7 @@ Data Structures and Algorithms interview preparation using Python.
 | # | Problem | Difficulty | Pattern | Solved | Reviews | Last Review | Mastery |
 |---|---|---|---|---|---:|---|---|
 | 1 | Two Sum | Easy | Index/Value Handlin;Bridge To Hash Maps | 2026-08-25 | 0 | - |  Learning |
+| 2 | Best Time to Buy and Sell Stock | Easy | One-Pass / Running Minimum /Array | 2026-08-25 | 0 | - |  Learning |
 
 <!-- PROGRESS_END -->
 
