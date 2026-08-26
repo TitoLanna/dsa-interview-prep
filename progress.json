@@ -25,5 +25,14 @@
         "reviews": 0,
         "last_reviewed": null,
         "mastery": "Learning"
+    },
+    "4": {
+        "problem": "Remove Duplicates from Sorted Array",
+        "difficulty": "Easy",
+        "pattern": "Two Pointers",
+        "solved": "2026-08-26",
+        "reviews": 0,
+        "last_reviewed": null,
+        "mastery": "Learning"
     }
 }
