@@ -44,7 +44,7 @@ def max_profit( prices):
     #Size of the array
     n  = len(prices)
 
-    buy,sell =0,0
+    
     total_profit =0
     
     for i in range(n-1):

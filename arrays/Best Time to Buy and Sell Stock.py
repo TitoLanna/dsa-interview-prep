@@ -29,9 +29,14 @@ def max_profit(prices):
         cur_max =val - cheapest_stock
         largest_profit = max(cur_max,largest_profit)
         
-        
-    
-        
     return largest_profit
 
 print(max_profit([7,1,5,3,6,4]))
+"""
+Problem: Best Time to Buy and Sell Stock
+Solved independently: Yes
+Pattern: One-pass / running minimum
+Time: O(n)
+Space: O(1)
+Status: Learning
+"""

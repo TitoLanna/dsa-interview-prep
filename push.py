@@ -300,7 +300,77 @@ def setup_remote(config):
 # =========================================================
 # Git branch helpers
 # =========================================================
+def remote_branch_exists(branch):
+    """
+    Check whether the branch already exists
+    on the remote repository.
+    """
 
+    result = subprocess.run(
+        [
+            "git",
+            "ls-remote",
+            "--heads",
+            "origin",
+            branch
+        ],
+        capture_output=True,
+        text=True
+    )
+
+    return bool(result.stdout.strip())
+
+def sync_with_remote():
+    """
+    Synchronize the local branch with GitHub
+    before attempting to push.
+
+    This is especially important when the
+    GitHub repository already contains commits.
+    """
+
+    branch = get_current_branch()
+
+    if not remote_branch_exists(branch):
+        print(
+            f" Remote branch origin/{branch} "
+            "does not exist yet."
+        )
+
+        return
+
+    print(
+        f" Synchronizing with origin/{branch}..."
+    )
+
+    result = subprocess.run(
+        [
+            "git",
+            "pull",
+            "origin",
+            branch,
+            "--allow-unrelated-histories",
+            "--no-edit"
+        ]
+    )
+
+    if result.returncode != 0:
+
+        print(
+            "\n Git could not automatically "
+            "synchronize the repositories."
+        )
+
+        print(
+            "There may be a merge conflict "
+            "that requires manual resolution."
+        )
+
+        sys.exit(result.returncode)
+
+    print(
+        " Repository synchronized."
+    )
 def get_current_branch():
     """
     Get the current Git branch.
@@ -913,7 +983,7 @@ def commit_and_push():
         return
 
     # -----------------------------------------------------
-    # Commit
+    # Commit locally
     # -----------------------------------------------------
 
     print(
@@ -927,6 +997,12 @@ def commit_and_push():
         "-m",
         commit_message
     ])
+    # -----------------------------------------
+    # Synchronize with GitHub
+    # -----------------------------------------
+
+    sync_with_remote()
+
 
     branch = get_current_branch()
 
