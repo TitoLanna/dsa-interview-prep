@@ -16,9 +16,9 @@ Data Structures and Algorithms interview preparation using Python.
 
 ### Statistics
 
-- Problems completed: **5**
+- Problems completed: **7**
 - Easy: **3**
-- Medium: **2**
+- Medium: **3**
 - Hard: **0**
 - Total reviews: **2**
 - Mastered: **0**
@@ -32,6 +32,8 @@ Data Structures and Algorithms interview preparation using Python.
 | 3 | Best Time to Buy and Sell Stock II | Medium | Array/Dynamic Programming | 2026-08-25 | 0 | - |  Learning |
 | 4 | Remove Duplicates from Sorted Array | Easy | Two Pointers | 2026-08-26 | 0 | - |  Learning |
 | 5 | Product of Array Except Self | Medium | Prefix Sum/Array | 2026-08-27 | 0 | - |  Learning |
+| 6 | Maximum Subarray | Medium | Array/Running State/Kadane/ | 2026-08-27 | 0 | - |  Learning |
+|  |  |  |  | 2026-08-27 | 0 | - |  Learning |
 
 <!-- PROGRESS_END -->
 

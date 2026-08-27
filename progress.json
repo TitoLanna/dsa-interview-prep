@@ -43,5 +43,23 @@
         "reviews": 0,
         "last_reviewed": null,
         "mastery": "Learning"
+    },
+    "": {
+        "problem": "",
+        "difficulty": "",
+        "pattern": "",
+        "solved": "2026-08-27",
+        "reviews": 0,
+        "last_reviewed": null,
+        "mastery": "Learning"
+    },
+    "6": {
+        "problem": "Maximum Subarray",
+        "difficulty": "Medium",
+        "pattern": "Array/Running State/Kadane/",
+        "solved": "2026-08-27",
+        "reviews": 0,
+        "last_reviewed": null,
+        "mastery": "Learning"
     }
 }
