@@ -34,5 +34,14 @@
         "reviews": 0,
         "last_reviewed": null,
         "mastery": "Learning"
+    },
+    "5": {
+        "problem": "Product of Array Except Self",
+        "difficulty": "Medium",
+        "pattern": "Prefix Sum/Array",
+        "solved": "2026-08-27",
+        "reviews": 0,
+        "last_reviewed": null,
+        "mastery": "Learning"
     }
 }

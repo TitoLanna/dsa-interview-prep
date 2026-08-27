@@ -16,11 +16,11 @@ Data Structures and Algorithms interview preparation using Python.
 
 ### Statistics
 
-- Problems completed: **4**
+- Problems completed: **5**
 - Easy: **3**
-- Medium: **1**
+- Medium: **2**
 - Hard: **0**
-- Total reviews: **1**
+- Total reviews: **2**
 - Mastered: **0**
 
 ### Problem Log
@@ -31,6 +31,7 @@ Data Structures and Algorithms interview preparation using Python.
 | 2 | Best Time to Buy and Sell Stock | Easy | One-Pass / Running Minimum /Array | 2026-08-25 | 1 | 2026-08-26 |  Reviewing |
 | 3 | Best Time to Buy and Sell Stock II | Medium | Array/Dynamic Programming | 2026-08-25 | 0 | - |  Learning |
 | 4 | Remove Duplicates from Sorted Array | Easy | Two Pointers | 2026-08-26 | 0 | - |  Learning |
+| 5 | Product of Array Except Self | Medium | Prefix Sum/Array | 2026-08-27 | 0 | - |  Learning |
 
 <!-- PROGRESS_END -->
 
