@@ -61,5 +61,14 @@
         "reviews": 0,
         "last_reviewed": null,
         "mastery": "Learning"
+    },
+    "7": {
+        "problem": "Spiral Matrix",
+        "difficulty": "Medium",
+        "pattern": "Array /Matrix/Boundary Simulation",
+        "solved": "2026-08-28",
+        "reviews": 0,
+        "last_reviewed": null,
+        "mastery": "Learning"
     }
 }
