@@ -22,9 +22,9 @@
         "difficulty": "Medium",
         "pattern": "Array/Dynamic Programming",
         "solved": "2026-08-25",
-        "reviews": 0,
-        "last_reviewed": null,
-        "mastery": "Learning"
+        "reviews": 1,
+        "last_reviewed": "2026-08-31",
+        "mastery": "Reviewing"
     },
     "4": {
         "problem": "Remove Duplicates from Sorted Array",
