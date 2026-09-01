@@ -70,5 +70,14 @@
         "reviews": 0,
         "last_reviewed": null,
         "mastery": "Learning"
+    },
+    "Remove Duplicates from Sorted Array": {
+        "problem": "Remove Duplicates from Sorted Array",
+        "difficulty": "Medium",
+        "pattern": "Two Pointers",
+        "solved": null,
+        "reviews": 1,
+        "last_reviewed": "2026-08-31",
+        "mastery": "Reviewing"
     }
 }
