@@ -16,8 +16,8 @@ Data Structures and Algorithms interview preparation using Python.
 
 ### Statistics
 
-- Problems completed: **9**
-- Easy: **4**
+- Problems completed: **10**
+- Easy: **5**
 - Medium: **5**
 - Hard: **0**
 - Total reviews: **4**
@@ -36,6 +36,7 @@ Data Structures and Algorithms interview preparation using Python.
 | 7 | Spiral Matrix | Medium | Array /Matrix/Boundary Simulation | 2026-08-28 | 0 | - |  Learning |
 | 8 | Subarray Sum Equals K | Medium | Array, Hash Table Prefix Sum | 2026-09-01 | 0 | - |  Learning |
 | 9 | Contain Duplicate | Easy | Set Membership | 2026-09-01 | 0 | - |  Learning |
+| 10 | Valid Anagram | Easy | Frequency Counting | 2026-09-01 | 0 | - |  Learning |
 
 <!-- PROGRESS_END -->
 

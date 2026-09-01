@@ -79,5 +79,14 @@
         "reviews": 0,
         "last_reviewed": null,
         "mastery": "Learning"
+    },
+    "10": {
+        "problem": "Valid Anagram",
+        "difficulty": "Easy",
+        "pattern": "Frequency Counting",
+        "solved": "2026-09-01",
+        "reviews": 0,
+        "last_reviewed": null,
+        "mastery": "Learning"
     }
 }
