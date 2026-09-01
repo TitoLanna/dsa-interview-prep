@@ -1,4 +1,68 @@
 {
+    "1": {
+        "problem": "Two Sum",
+        "difficulty": "Easy",
+        "pattern": "Index/Value Handlin;Bridge To Hash Maps",
+        "solved": "2026-08-25",
+        "reviews": 1,
+        "last_reviewed": "2026-08-26",
+        "mastery": "Reviewing"
+    },
+    "2": {
+        "problem": "Best Time to Buy and Sell Stock",
+        "difficulty": "Easy",
+        "pattern": "One-Pass / Running Minimum /Array",
+        "solved": "2026-08-25",
+        "reviews": 1,
+        "last_reviewed": "2026-08-26",
+        "mastery": "Reviewing"
+    },
+    "3": {
+        "problem": "Best Time to Buy and Sell Stock II",
+        "difficulty": "Medium",
+        "pattern": "Array/Dynamic Programming",
+        "solved": "2026-08-25",
+        "reviews": 1,
+        "last_reviewed": "2026-08-31",
+        "mastery": "Reviewing"
+    },
+    "4": {
+        "problem": "Remove Duplicates from Sorted Array",
+        "difficulty": "Easy",
+        "pattern": "Two Pointers",
+        "solved": "2026-08-26",
+        "reviews": 1,
+        "last_reviewed": "2026-08-31",
+        "mastery": "Reviewing"
+    },
+    "5": {
+        "problem": "Product of Array Except Self",
+        "difficulty": "Medium",
+        "pattern": "Prefix Sum/Array",
+        "solved": "2026-08-27",
+        "reviews": 0,
+        "last_reviewed": null,
+        "mastery": "Learning"
+    },
+
+    "6": {
+        "problem": "Maximum Subarray",
+        "difficulty": "Medium",
+        "pattern": "Array/Running State/Kadane/",
+        "solved": "2026-08-27",
+        "reviews": 0,
+        "last_reviewed": null,
+        "mastery": "Learning"
+    },
+    "7": {
+        "problem": "Spiral Matrix",
+        "difficulty": "Medium",
+        "pattern": "Array /Matrix/Boundary Simulation",
+        "solved": "2026-08-28",
+        "reviews": 0,
+        "last_reviewed": null,
+        "mastery": "Learning"
+    },
     "8": {
         "problem": "Subarray Sum Equals K",
         "difficulty": "Medium",
@@ -8,4 +72,5 @@
         "last_reviewed": null,
         "mastery": "Learning"
     }
+   
 }
