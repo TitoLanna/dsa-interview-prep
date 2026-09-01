@@ -38,7 +38,7 @@ def spiralOrder( matrix):
                     break
         
         # Move to left <-
-        for i in range(right-1,-1,-1):
+        for i in range(right-1,left-1,-1):
             a = matrix[bottom-1][i]
             res.append(a)
         bottom-=1
