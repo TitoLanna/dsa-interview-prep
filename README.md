@@ -34,8 +34,6 @@ Data Structures and Algorithms interview preparation using Python.
 | 5 | Product of Array Except Self | Medium | Prefix Sum/Array | 2026-08-27 | 0 | - |  Learning |
 | 6 | Maximum Subarray | Medium | Array/Running State/Kadane/ | 2026-08-27 | 0 | - |  Learning |
 | 7 | Spiral Matrix | Medium | Array /Matrix/Boundary Simulation | 2026-08-28 | 0 | - |  Learning |
-|  |  |  |  | 2026-08-27 | 0 | - |  Learning |
-| Remove Duplicates from Sorted Array | Remove Duplicates from Sorted Array | Medium | Two Pointers | - | 1 | 2026-08-31 |  Reviewing |
 
 <!-- PROGRESS_END -->
 
