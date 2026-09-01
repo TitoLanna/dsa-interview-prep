@@ -79,5 +79,14 @@
         "reviews": 1,
         "last_reviewed": "2026-08-31",
         "mastery": "Reviewing"
+    },
+    "8": {
+        "problem": "Subarray Sum Equals K",
+        "difficulty": "Medium",
+        "pattern": "Array, Hash Table Prefix Sum",
+        "solved": "2026-09-01",
+        "reviews": 0,
+        "last_reviewed": null,
+        "mastery": "Learning"
     }
 }

@@ -16,9 +16,9 @@ Data Structures and Algorithms interview preparation using Python.
 
 ### Statistics
 
-- Problems completed: **9**
+- Problems completed: **10**
 - Easy: **3**
-- Medium: **5**
+- Medium: **6**
 - Hard: **0**
 - Total reviews: **4**
 - Mastered: **0**
@@ -34,6 +34,7 @@ Data Structures and Algorithms interview preparation using Python.
 | 5 | Product of Array Except Self | Medium | Prefix Sum/Array | 2026-08-27 | 0 | - |  Learning |
 | 6 | Maximum Subarray | Medium | Array/Running State/Kadane/ | 2026-08-27 | 0 | - |  Learning |
 | 7 | Spiral Matrix | Medium | Array /Matrix/Boundary Simulation | 2026-08-28 | 0 | - |  Learning |
+| 8 | Subarray Sum Equals K | Medium | Array, Hash Table Prefix Sum | 2026-09-01 | 0 | - |  Learning |
 |  |  |  |  | 2026-08-27 | 0 | - |  Learning |
 | Remove Duplicates from Sorted Array | Remove Duplicates from Sorted Array | Medium | Two Pointers | - | 1 | 2026-08-31 |  Reviewing |
 
