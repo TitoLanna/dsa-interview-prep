@@ -16,18 +16,25 @@ Data Structures and Algorithms interview preparation using Python.
 
 ### Statistics
 
-- Problems completed: **1**
-- Easy: **0**
-- Medium: **1**
+- Problems completed: **8**
+- Easy: **3**
+- Medium: **5**
 - Hard: **0**
-- Total reviews: **0**
+- Total reviews: **4**
 - Mastered: **0**
 
 ### Problem Log
 
 | # | Problem | Difficulty | Pattern | Solved | Reviews | Last Review | Mastery |
 |---|---|---|---|---|---:|---|---|
-| 8 | Subarray Sum Equals K | Medium | Array, Hash Table Prefix Sum | 2026-09-01 | 0 | - |  Learning |
+| 1 | Two Sum | Easy | Index/Value Handling; Bridge To Hash Maps | 2026-08-25 | 1 | 2026-08-26 | Reviewing |
+| 2 | Best Time to Buy and Sell Stock | Easy | One-Pass / Running Minimum / Array | 2026-08-25 | 1 | 2026-08-26 | Reviewing |
+| 3 | Best Time to Buy and Sell Stock II | Medium | Array / Dynamic Programming | 2026-08-25 | 1 | 2026-08-31 | Reviewing |
+| 4 | Remove Duplicates from Sorted Array | Easy | Two Pointers | 2026-08-26 | 1 | 2026-08-31 | Reviewing |
+| 5 | Product of Array Except Self | Medium | Prefix Sum / Array | 2026-08-27 | 0 | - | Learning |
+| 6 | Maximum Subarray | Medium | Array / Running State / Kadane | 2026-08-27 | 0 | - | Learning |
+| 7 | Spiral Matrix | Medium | Array / Matrix / Boundary Simulation | 2026-08-28 | 0 | - | Learning |
+| 8 | Subarray Sum Equals K | Medium | Array / Hash Table / Prefix Sum | 2026-09-01 | 0 | - | Learning |
 
 <!-- PROGRESS_END -->
 
