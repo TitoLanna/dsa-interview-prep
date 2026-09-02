@@ -97,5 +97,14 @@
         "reviews": 0,
         "last_reviewed": null,
         "mastery": "Learning"
+    },
+    "12": {
+        "problem": "Longest Consecutive Sequence",
+        "difficulty": "Medium",
+        "pattern": "Set-Based Sequence Starts",
+        "solved": "2026-09-02",
+        "reviews": 0,
+        "last_reviewed": null,
+        "mastery": "Learning"
     }
 }
