@@ -16,9 +16,9 @@ Data Structures and Algorithms interview preparation using Python.
 
 ### Statistics
 
-- Problems completed: **10**
+- Problems completed: **11**
 - Easy: **5**
-- Medium: **5**
+- Medium: **6**
 - Hard: **0**
 - Total reviews: **4**
 - Mastered: **0**
@@ -37,6 +37,7 @@ Data Structures and Algorithms interview preparation using Python.
 | 8 | Subarray Sum Equals K | Medium | Array, Hash Table Prefix Sum | 2026-09-01 | 0 | - |  Learning |
 | 9 | Contain Duplicate | Easy | Set Membership | 2026-09-01 | 0 | - |  Learning |
 | 10 | Valid Anagram | Easy | Frequency Counting | 2026-09-01 | 0 | - |  Learning |
+| 11 | Group Anagrams | Medium | Canonical Key/Grouping | 2026-09-02 | 0 | - |  Learning |
 
 <!-- PROGRESS_END -->
 

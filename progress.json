@@ -88,5 +88,14 @@
         "reviews": 0,
         "last_reviewed": null,
         "mastery": "Learning"
+    },
+    "11": {
+        "problem": "Group Anagrams",
+        "difficulty": "Medium",
+        "pattern": "Canonical Key/Grouping",
+        "solved": "2026-09-02",
+        "reviews": 0,
+        "last_reviewed": null,
+        "mastery": "Learning"
     }
 }
