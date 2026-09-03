@@ -115,5 +115,14 @@
         "reviews": 1,
         "last_reviewed": "2026-09-03",
         "mastery": "Reviewing"
+    },
+    "14": {
+        "problem": "Valid Palindrome",
+        "difficulty": "Easy",
+        "pattern": "Opposite Ends",
+        "solved": "2026-09-03",
+        "reviews": 0,
+        "last_reviewed": null,
+        "mastery": "Learning"
     }
 }
