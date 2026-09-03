@@ -16,9 +16,9 @@ Data Structures and Algorithms interview preparation using Python.
 
 ### Statistics
 
-- Problems completed: **12**
+- Problems completed: **13**
 - Easy: **5**
-- Medium: **7**
+- Medium: **8**
 - Hard: **0**
 - Total reviews: **4**
 - Mastered: **0**
@@ -39,6 +39,7 @@ Data Structures and Algorithms interview preparation using Python.
 | 10 | Valid Anagram | Easy | Frequency Counting | 2026-09-01 | 0 | - |  Learning |
 | 11 | Group Anagrams | Medium | Canonical Key/Grouping | 2026-09-02 | 0 | - |  Learning |
 | 12 | Longest Consecutive Sequence | Medium | Set-Based Sequence Starts | 2026-09-02 | 0 | - |  Learning |
+| 13 | Insert Delete GetRandom O(1) | Medium | Map/Dynamic Array Design | 2026-09-03 | 0 | - |  Learning |
 
 <!-- PROGRESS_END -->
 

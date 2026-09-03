@@ -106,5 +106,14 @@
         "reviews": 0,
         "last_reviewed": null,
         "mastery": "Learning"
+    },
+    "13": {
+        "problem": "Insert Delete GetRandom O(1)",
+        "difficulty": "Medium",
+        "pattern": "Map/Dynamic Array Design",
+        "solved": "2026-09-03",
+        "reviews": 0,
+        "last_reviewed": null,
+        "mastery": "Learning"
     }
 }
