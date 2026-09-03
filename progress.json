@@ -124,5 +124,14 @@
         "reviews": 0,
         "last_reviewed": null,
         "mastery": "Learning"
+    },
+    "15": {
+        "problem": "Valid Palindrome II",
+        "difficulty": "Easy",
+        "pattern": "Opposite Ends",
+        "solved": "2026-09-03",
+        "reviews": 0,
+        "last_reviewed": null,
+        "mastery": "Learning"
     }
 }

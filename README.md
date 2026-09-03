@@ -16,8 +16,8 @@ Data Structures and Algorithms interview preparation using Python.
 
 ### Statistics
 
-- Problems completed: **14**
-- Easy: **6**
+- Problems completed: **15**
+- Easy: **7**
 - Medium: **8**
 - Hard: **0**
 - Total reviews: **5**
@@ -41,6 +41,7 @@ Data Structures and Algorithms interview preparation using Python.
 | 12 | Longest Consecutive Sequence | Medium | Set-Based Sequence Starts | 2026-09-02 | 0 | - |  Learning |
 | 13 | Insert Delete GetRandom O(1) | Medium | Map/Dynamic Array Design | 2026-09-03 | 1 | 2026-09-03 |  Reviewing |
 | 14 | Valid Palindrome | Easy | Opposite Ends | 2026-09-03 | 0 | - |  Learning |
+| 15 | Valid Palindrome II | Easy | Opposite Ends | 2026-09-03 | 0 | - |  Learning |
 
 <!-- PROGRESS_END -->
 
