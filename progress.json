@@ -133,5 +133,14 @@
         "reviews": 0,
         "last_reviewed": null,
         "mastery": "Learning"
+    },
+    "16": {
+        "problem": "Two Sum II - Input Array Is Sorted",
+        "difficulty": "Medium",
+        "pattern": "Sorted Two Pointers",
+        "solved": "2026-09-04",
+        "reviews": 0,
+        "last_reviewed": null,
+        "mastery": "Learning"
     }
 }

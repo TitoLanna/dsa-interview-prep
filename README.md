@@ -16,9 +16,9 @@ Data Structures and Algorithms interview preparation using Python.
 
 ### Statistics
 
-- Problems completed: **15**
+- Problems completed: **16**
 - Easy: **7**
-- Medium: **8**
+- Medium: **9**
 - Hard: **0**
 - Total reviews: **5**
 - Mastered: **0**
@@ -42,6 +42,7 @@ Data Structures and Algorithms interview preparation using Python.
 | 13 | Insert Delete GetRandom O(1) | Medium | Map/Dynamic Array Design | 2026-09-03 | 1 | 2026-09-03 |  Reviewing |
 | 14 | Valid Palindrome | Easy | Opposite Ends | 2026-09-03 | 0 | - |  Learning |
 | 15 | Valid Palindrome II | Easy | Opposite Ends | 2026-09-03 | 0 | - |  Learning |
+| 16 | Two Sum II - Input Array Is Sorted | Medium | Sorted Two Pointers | 2026-09-04 | 0 | - |  Learning |
 
 <!-- PROGRESS_END -->
 
