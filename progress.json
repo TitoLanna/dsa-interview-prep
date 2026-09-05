@@ -151,5 +151,14 @@
         "reviews": 0,
         "last_reviewed": null,
         "mastery": "Learning"
+    },
+    "18": {
+        "problem": "3Sum",
+        "difficulty": "Medium",
+        "pattern": "Sort/Fixed Index/Two Pointers",
+        "solved": "2026-09-05",
+        "reviews": 0,
+        "last_reviewed": null,
+        "mastery": "Learning"
     }
 }
