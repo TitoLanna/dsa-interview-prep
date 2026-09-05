@@ -45,9 +45,29 @@ def twoSumII(numbers,target):
         index_map[val] = idx
     return []
         
-     
+#Trying to solve this with the two pointer approach
 
+def twoSumII_(numbers,target):
+    """
+    This function is slower than the initial one but it implements the 
+    two pointer technique properly
+    """
+    left =0
+    right =len(numbers)-1
+    
+    while left < right:
+        cur_sum =numbers[left] + numbers[right]
+        if cur_sum == target:
+            return [left+1,right+1]
+        if cur_sum < target:
+            left+=1
+        if cur_sum > target:
+            right-=1
+    return []
+    
+print(twoSumII_([2,7,11,15],9))
 #Test
+""" 
 test_case =[
     {
        "Input": [-1,0], 
@@ -71,3 +91,5 @@ for i,test in enumerate(test_case):
     exp_output= test["Output"]
     res=twoSumII(nums,target)
     print(f"Test [{i+1}] : ",f"Passed  [✅]{res}" if res ==exp_output else f"Failed [❌] \t Produced: {res} \t Expected: {exp_output}")
+
+"""

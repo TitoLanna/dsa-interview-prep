@@ -142,5 +142,14 @@
         "reviews": 0,
         "last_reviewed": null,
         "mastery": "Learning"
+    },
+    "17": {
+        "problem": "Container With Most Water",
+        "difficulty": "Medium",
+        "pattern": "Movement Invariant",
+        "solved": "2026-09-04",
+        "reviews": 0,
+        "last_reviewed": null,
+        "mastery": "Learning"
     }
 }

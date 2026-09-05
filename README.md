@@ -16,9 +16,9 @@ Data Structures and Algorithms interview preparation using Python.
 
 ### Statistics
 
-- Problems completed: **16**
+- Problems completed: **17**
 - Easy: **7**
-- Medium: **9**
+- Medium: **10**
 - Hard: **0**
 - Total reviews: **5**
 - Mastered: **0**
@@ -43,6 +43,7 @@ Data Structures and Algorithms interview preparation using Python.
 | 14 | Valid Palindrome | Easy | Opposite Ends | 2026-09-03 | 0 | - |  Learning |
 | 15 | Valid Palindrome II | Easy | Opposite Ends | 2026-09-03 | 0 | - |  Learning |
 | 16 | Two Sum II - Input Array Is Sorted | Medium | Sorted Two Pointers | 2026-09-04 | 0 | - |  Learning |
+| 17 | Container With Most Water | Medium | Movement Invariant | 2026-09-04 | 0 | - |  Learning |
 
 <!-- PROGRESS_END -->
 
