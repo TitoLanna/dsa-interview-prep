@@ -22,10 +22,8 @@ def _3Sum(nums):
             break
         
         left = i+1
-        print("left:",left)
         right = len(nums)-1
-        print("right:",right)
-        print("i: ",i)
+       
         while left < right:
             total = nums[i]+ nums[left]+nums[right]
             if total ==0:

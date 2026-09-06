@@ -16,10 +16,10 @@ Data Structures and Algorithms interview preparation using Python.
 
 ### Statistics
 
-- Problems completed: **18**
+- Problems completed: **19**
 - Easy: **7**
 - Medium: **11**
-- Hard: **0**
+- Hard: **1**
 - Total reviews: **5**
 - Mastered: **0**
 
@@ -45,6 +45,7 @@ Data Structures and Algorithms interview preparation using Python.
 | 16 | Two Sum II - Input Array Is Sorted | Medium | Sorted Two Pointers | 2026-09-04 | 0 | - |  Learning |
 | 17 | Container With Most Water | Medium | Movement Invariant | 2026-09-04 | 0 | - |  Learning |
 | 18 | 3Sum | Medium | Sort/Fixed Index/Two Pointers | 2026-09-05 | 0 | - |  Learning |
+| 19 | rapping Rain Water | Hard | Two-End State/Maxima | 2026-09-05 | 0 | - |  Learning |
 
 <!-- PROGRESS_END -->
 
