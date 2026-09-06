@@ -178,5 +178,14 @@
         "reviews": 0,
         "last_reviewed": null,
         "mastery": "Learning"
+    },
+    "21": {
+        "problem": "Longest Substring Without Repeating Characters",
+        "difficulty": "Medium",
+        "pattern": "Hash Table/ Sliding Window",
+        "solved": "2026-09-06",
+        "reviews": 0,
+        "last_reviewed": null,
+        "mastery": "Learning"
     }
 }
