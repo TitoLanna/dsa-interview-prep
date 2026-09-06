@@ -162,7 +162,7 @@
         "mastery": "Learning"
     },
     "19": {
-        "problem": "rapping Rain Water",
+        "problem": "Trapping Rain Water",
         "difficulty": "Hard",
         "pattern": "Two-End State/Maxima",
         "solved": "2026-09-05",
