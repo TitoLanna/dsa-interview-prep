@@ -16,9 +16,9 @@ Data Structures and Algorithms interview preparation using Python.
 
 ### Statistics
 
-- Problems completed: **21**
+- Problems completed: **22**
 - Easy: **8**
-- Medium: **12**
+- Medium: **13**
 - Hard: **1**
 - Total reviews: **5**
 - Mastered: **0**
@@ -48,6 +48,7 @@ Data Structures and Algorithms interview preparation using Python.
 | 19 | Trapping Rain Water | Hard | Two-End State/Maxima | 2026-09-05 | 0 | - |  Learning |
 | 20 | Maximum Average Subarray I | Easy | Sliding Window | 2026-09-05 | 0 | - |  Learning |
 | 21 | Longest Substring Without Repeating Characters | Medium | Hash Table/ Sliding Window | 2026-09-06 | 0 | - |  Learning |
+| 22 | Minimum Size Subarray Sum | Medium | Sliding Window | 2026-09-07 | 0 | - |  Learning |
 
 <!-- PROGRESS_END -->
 
