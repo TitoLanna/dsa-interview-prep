@@ -196,5 +196,14 @@
         "reviews": 0,
         "last_reviewed": null,
         "mastery": "Learning"
+    },
+    "23": {
+        "problem": "Longest Repeating Character Replacement",
+        "difficulty": "Meduim",
+        "pattern": "Window Invariant",
+        "solved": "2026-09-09",
+        "reviews": 0,
+        "last_reviewed": null,
+        "mastery": "Learning"
     }
 }
