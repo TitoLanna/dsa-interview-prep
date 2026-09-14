@@ -3,7 +3,21 @@ import os
 import subprocess
 import sys
 from datetime import date
+from enum import Enum
 
+
+class Difficulty(Enum):
+    EASY = "Easy"
+    MEDIUM = "Medium"
+    HARD = "Hard"
+    
+class Action(Enum):
+    SOLVE = "solve"
+    REVIEW = "review"
+    SKIP = "skip"
+class Confirmation(Enum):
+    YES = "yes"
+    NO = "no"
 
 # =========================================================
 # Configuration
@@ -410,11 +424,19 @@ def has_upstream():
     )
 
     return result.returncode == 0
-
+#Confirmation code 
+def get_confirmation(message):
+        while True:
+             user_input =  input(f"{message} (yes/no): ").strip().lower()
+             try:
+                 return Confirmation(user_input)
+             except ValueError:
+                 print("Please enter yes or no.")
 
 # =========================================================
 # DSA progress tracking
 # =========================================================
+
 
 def ask_problem_information():
     """
@@ -423,53 +445,280 @@ def ask_problem_information():
     recording a DSA problem.
     """
 
-    print(
-        "\n DSA Progress"
-    )
+    
+    
+    #Helper functions
+    def get_action():
+        while True:
+            user_input = input(
+                "Did you solve or review a problem? "
+                "(solve/review/skip): "
+            ).strip().lower()
 
-    action = input(
-        "Did you solve or review a problem? "
-        "(solve/review/skip): "
-    ).strip().lower()
+            try:
+                return Action(user_input)
 
-    if action == "skip":
+            except ValueError:
+                print(
+                    "Please enter solve, review, or skip."
+                )
+    def get_problem_number():
+        while True :
+            try:
+                 return int(input("Problem number: ").strip())
+                
+            except ValueError:
+                print("Please enter a valid problem number. example 24")
+    
+    def get_problem_name():       
+        while True:
+            problem: str = input(
+                "Problem name: "
+            ).strip()
+
+            if problem:
+                return problem
+
+            print(
+                "Problem name cannot be empty."
+            )
+
+
+    def get_problem_difficulty():       
+        while True:
+            user_input = input("Difficulty (Easy/Medium/Hard): ").strip().title()
+            try:
+                return Difficulty(user_input)
+                
+            except ValueError:
+                print(" Please enter Easy, Medium, or Hard.")
+                
+    def get_problem_pattern():  
+        while True:
+            pattern = input( "Pattern/Topic: ").strip().title()
+            
+            if pattern:
+                    return pattern
+            print(
+                "Pattern cannot be empty."
+            )            
+
+
+    
+    
+    def show_summary(data, title="DSA PROBLEM SUMMARY"):
+            print("\n" + "=" * 40)
+            print(title)
+            print("=" * 40)
+
+            for index, (key, value) in enumerate(
+                data.items(),
+                start=1
+            ):
+                print(
+                    f"{index}. {key.title()}: {value}"
+                )
+
+            print("=" * 40)
+                 
+                 
+    print("\n DSA Progress")
+    action = get_action()
+    
+    if action == Action.SKIP:
         return None
+    #-------------------------------------
+    # Review 
+    #_____________________________________
+    
+    
+    if action == Action.REVIEW:
 
-    if action not in [
-        "solve",
-        "review"
-    ]:
+        progress = load_json(PROGRESS_FILE)
+
+        while True:
+            number = get_problem_number()
+            number_key = str(number)
+
+            if number_key not in progress:
+                print(
+                    f"Problem #{number} was not found."
+                )
+
+                try_again = get_confirmation(
+                    "Would you like to try another "
+                    "problem number?"
+                )
+
+                if try_again == Confirmation.NO:
+                    return None
+
+                continue
+
+            entry = progress[number_key]
+
+            review_info = {
+                "Number": number,
+                "Problem": entry["problem"],
+                "Difficulty": entry["difficulty"],
+                "Pattern": entry["pattern"],
+                "Reviews": entry["reviews"],
+                "Last Reviewed": entry["last_reviewed"],
+                "Mastery": entry["mastery"],
+            }
+
+            print("\n" + "=" * 40)
+            print("PROBLEM FOUND")
+            print("=" * 40)
+
+            for key, value in review_info.items():
+                print(f"{key}: {value}")
+
+            print("=" * 40)
+
+            confirm = get_confirmation(
+                "Is this the problem you reviewed?"
+            )
+
+            if confirm == Confirmation.YES:
+                problem_info = {
+                    "action": action.value,
+                    "number": number,
+                    "problem": entry["problem"],
+                    "difficulty": entry["difficulty"],
+                    "pattern": entry["pattern"],
+                }
+
+                return problem_info
+    
+    #_____________________________________
+    #   Edit
+    #_____________________________________
+    number =get_problem_number()
+    problem =get_problem_name()
+    difficulty = get_problem_difficulty()
+    pattern = get_problem_pattern()
+    
+    
+    problem_info={
+        "action":action.value,
+        "number":number,
+        "problem":problem,
+        "difficulty":difficulty.value,
+        "pattern":pattern
+    }
+    
+    show_summary(problem_info)
+    
+    make_changes = get_confirmation(
+        "Would you like to make any changes?"
+    )
+    if make_changes == Confirmation.NO:
+        return problem_info
+
+    edit_options = {
+    "1": ("action", get_action),
+    "2": ("number", get_problem_number),
+    "3": ("problem", get_problem_name),
+    "4": ("difficulty", get_problem_difficulty),
+    "5": ("pattern", get_problem_pattern),
+}
+    changes = {}
+    
+    while make_changes==Confirmation.YES:
+        
+        print(
+            "\nWhat would you like to change?"
+        )
+        
+        for index, key in enumerate(
+            problem_info.keys(),
+            start=1
+        ):
+            print(
+                f"{index}. {key.title()}"
+            )
+
+        print("6. Done")
+
+      
+
+        choice = input(
+            "Enter choice (1-6): "
+            ).strip()
+        
+        # User selected Done
+        if choice=="6":
+            done = get_confirmation(
+                "Are you done making changes?"
+            )
+
+            if done == Confirmation.YES:
+                make_changes = Confirmation.NO
+                break
+
+            continue
+        
+        # Invalid option
+        if choice not in edit_options:
+            print(
+                "Please choose a number from 1 to 6."
+                )
+            continue
+       
+       
+        # Retrieve function from hashmap
+        key,function =edit_options[choice]
+        new_value =function()
+        
+        
+         # Special case: Action.SKIP
+        if new_value== Action.SKIP:
+            
+            cancel = get_confirmation(
+                "Do you want to cancel "
+                "this progress entry?"
+            )
+
+            if cancel == Confirmation.YES:
+                return None
+
+            continue
+        
+        # Enum -> string
+        if isinstance(new_value,Enum):
+            new_value =new_value.value
+            
+            
+            #update Information
+        problem_info[key] = new_value
+
+        changes[key] = new_value
 
         print(
-            " Invalid option. "
-            "Skipping progress update."
+            f"\nUpdated "
+            f"{key.title()} -> {new_value}"
         )
 
-        return None
+        show_summary(
+            problem_info,
+            "UPDATED DSA PROBLEM SUMMARY"
+        )
+        
+        
+    if changes:
 
-    number = input(
-        "Problem number: "
-    ).strip()
+        print("\nChanges made:")
 
-    problem = input(
-        "Problem name: "
-    ).strip()
+        for key, value in changes.items():
+            print(
+                f"- {key.title()}: {value}"
+            )
+        show_summary(
+            problem_info,"FINAL DSA PROBLEM SUMMARY"
+        )
+    return problem_info
 
-    difficulty = input(
-        "Difficulty (Easy/Medium/Hard): "
-    ).strip().title()
-
-    pattern = input(
-        "Pattern/Topic: "
-    ).strip().title()
-
-    return {
-        "action": action,
-        "number": number,
-        "problem": problem,
-        "difficulty": difficulty,
-        "pattern": pattern
-    }
 
 
 def update_progress(info):
@@ -488,7 +737,7 @@ def update_progress(info):
         PROGRESS_FILE
     )
 
-    number = info["number"]
+    number = str(info["number"])
     action = info["action"]
 
     today = date.today().isoformat()
@@ -1078,34 +1327,39 @@ def main():
     setup_remote(
         config
     )
+   
+    
 
     # -----------------------------------------------------
     # Step 4:
     # Record DSA activity
+    # Record multiple DSA activities
     # -----------------------------------------------------
+    while True:
+        problem_info = (
+            ask_problem_information()
+        )
+        if problem_info is not None:
+             # Update progress.json
+            update_progress(
+                problem_info
+            )
+        add_another = get_confirmation(
+            "Would you like to record another problem?"
+        )
+        if add_another==Confirmation.NO:
+            break
 
-    problem_info = (
-        ask_problem_information()
-    )
 
     # -----------------------------------------------------
     # Step 5:
-    # Update progress.json
-    # -----------------------------------------------------
-
-    update_progress(
-        problem_info
-    )
-
-    # -----------------------------------------------------
-    # Step 6:
     # Regenerate README
     # -----------------------------------------------------
 
     update_readme()
 
     # -----------------------------------------------------
-    # Step 7:
+    # Step 6:
     # Commit and push
     # -----------------------------------------------------
 

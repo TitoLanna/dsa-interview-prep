@@ -184,18 +184,18 @@
         "difficulty": "Medium",
         "pattern": "Hash Table/ Sliding Window",
         "solved": "2026-09-06",
-        "reviews": 0,
-        "last_reviewed": null,
-        "mastery": "Learning"
+        "reviews": 1,
+        "last_reviewed": "2026-09-14",
+        "mastery": "Reviewing"
     },
     "22": {
         "problem": "Minimum Size Subarray Sum",
         "difficulty": "Medium",
         "pattern": "Sliding Window",
         "solved": "2026-09-07",
-        "reviews": 0,
-        "last_reviewed": null,
-        "mastery": "Learning"
+        "reviews": 1,
+        "last_reviewed": "2026-09-14",
+        "mastery": "Reviewing"
     },
     "23": {
         "problem": "Longest Repeating Character Replacement",
