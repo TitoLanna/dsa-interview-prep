@@ -8,8 +8,6 @@
 def characterReplacement(s,k):
     """ 
     
-   
-    
     Args: 
         s (str): The string .Example  s="ABAB"
         k (int): The integer . Example k =2
@@ -17,6 +15,9 @@ def characterReplacement(s,k):
     Returns:
         int : The length of the longest substring containing the same letter
 
+    `Time: O(n)`
+    
+    `Space : O(1)`
     """
     left = 0
     longest =0

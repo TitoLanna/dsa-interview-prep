@@ -205,5 +205,14 @@
         "reviews": 0,
         "last_reviewed": null,
         "mastery": "Learning"
+    },
+    "24": {
+        "problem": "Permutation in String",
+        "difficulty": "Medium",
+        "pattern": "Frequency Window",
+        "solved": "2026-09-13",
+        "reviews": 0,
+        "last_reviewed": null,
+        "mastery": "Learning"
     }
 }

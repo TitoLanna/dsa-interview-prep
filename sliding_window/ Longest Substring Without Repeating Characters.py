@@ -59,7 +59,7 @@ def lengthOfLongestSubstring(s):
         max_length = 0
         seen = {}
 
-        for right, char in enumerate(s):
+        for right, char in enumerate(s):#r->3 l ->0
 
             if char in seen and seen[char] >= left:
                 left = seen[char] + 1
