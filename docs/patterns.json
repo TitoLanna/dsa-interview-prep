@@ -1,0 +1,2437 @@
+{
+  "meta": {
+    "title": "Python DSA Interview Mastery Handbook",
+    "subtitle": "Data Structures + Problem-Solving Patterns + Ordered LeetCode Practice",
+    "core_rule": "Do not memorize complete solutions. Memorize the small reusable operations and learn to recognize when a problem is asking you to combine them.",
+    "edition": "Python edition | Interview-focused | 2026"
+  },
+  "learning_loop": [
+    "Draw the data structure or state before coding.",
+    "Name the invariant: what must remain true after every iteration or recursive call?",
+    "Write the brute-force idea in one or two sentences.",
+    "Identify the bottleneck and choose the pattern that removes it.",
+    "Implement from a small template, not from a memorized full solution.",
+    "Trace one normal case and at least two edge cases.",
+    "Re-code the solution from memory the next day.",
+    "Revisit difficult problems after 3 days, 1 week, and 2 weeks."
+  ],
+  "recommended_order": [
+    "Arrays & Strings",
+    "Hash Maps & Sets",
+    "Two Pointers",
+    "Sliding Window",
+    "Stacks",
+    "Queues & Deques",
+    "Linked Lists",
+    "Binary Search",
+    "Trees",
+    "Depth-First Search (DFS)",
+    "Breadth-First Search (BFS)",
+    "Heaps / Priority Queues",
+    "Graphs",
+    "Union Find (Disjoint Set Union)",
+    "Backtracking",
+    "Tries",
+    "Greedy Algorithms",
+    "Divide & Conquer",
+    "Dynamic Programming"
+  ],
+  "python_primitives": {
+    "title": "Python interview primitives to know cold",
+    "code": "from collections import Counter, defaultdict, deque\nfrom functools import lru_cache\nimport heapq\n\n# hash map / set\nfreq = Counter(nums)\npos = {}\nseen = set()\n\n# queue / deque\nq = deque([start])\nleft = q.popleft()\nq.append(next_item)\n\n# min heap\nheap = []\nheapq.heappush(heap, value)\nsmallest = heapq.heappop(heap)\n\n# max heap: negate values\nheapq.heappush(heap, -value)\nlargest = -heapq.heappop(heap)\n\n# memoization\n@lru_cache(None)\ndef dp(state):\n    ..."
+  },
+  "topics": [
+    {
+      "order": 1,
+      "id": "arrays-strings",
+      "title": "Arrays & Strings",
+      "goal": "Become completely comfortable with indexing, traversal, in-place updates, prefix/suffix information, sorting, and using an array as the state for other patterns.",
+      "what_to_master": [
+        "Index safely and distinguish value vs index.",
+        "Traverse forward, backward, and with enumerate().",
+        "Modify an array in place with read/write pointers.",
+        "Use prefix sums for repeated range queries.",
+        "Use prefix/suffix products or extrema when each answer depends on everything except the current position.",
+        "Sort when ordering makes relationships easier to detect.",
+        "Understand O(1) extra-space vs creating a result array.",
+        "Recognize matrix/grid indexing as an extension of array indexing."
+      ],
+      "recognition_signals": [
+        "Input is an array/string and the task asks for counts, ranges, subarrays, rearrangement, or in-place modification.",
+        "Repeated sum over ranges -> prefix sum.",
+        "Need all elements except self -> prefix/suffix.",
+        "Sorted result or easier neighbor comparison -> sorting may simplify the problem.",
+        "Contiguous portion of an array -> sliding window, prefix sum, or DP may be layered on top."
+      ],
+      "templates": [
+        {
+          "name": "Traversal + index",
+          "note": "This is the base operation behind almost every array technique.",
+          "code": "for i, value in enumerate(nums):\n    # i is the index, value is nums[i]\n    pass"
+        },
+        {
+          "name": "Prefix sum",
+          "note": "The extra leading zero eliminates special handling for ranges starting at index 0.",
+          "code": "prefix = [0] * (len(nums) + 1)\nfor i, x in enumerate(nums):\n    prefix[i + 1] = prefix[i] + x\n\n# inclusive range [left, right]\nrange_sum = prefix[right + 1] - prefix[left]"
+        },
+        {
+          "name": "In-place read/write pointer",
+          "note": "Use when the output can overwrite processed positions.",
+          "code": "write = 0\nfor read in range(len(nums)):\n    if keep(nums[read]):\n        nums[write] = nums[read]\n        write += 1\nreturn write"
+        },
+        {
+          "name": "Prefix/suffix product",
+          "note": "A powerful way to answer each position using information on both sides without division.",
+          "code": "n = len(nums)\nans = [1] * n\nprefix = 1\nfor i in range(n):\n    ans[i] = prefix\n    prefix *= nums[i]\n\nsuffix = 1\nfor i in range(n - 1, -1, -1):\n    ans[i] *= suffix\n    suffix *= nums[i]\nreturn ans"
+        }
+      ],
+      "common_mistakes": [
+        "Off-by-one errors in range endpoints.",
+        "Confusing subarray (contiguous) with subsequence (not necessarily contiguous).",
+        "Mutating an array while still needing overwritten values.",
+        "Using nested loops before asking whether accumulated state can remove repeated work."
+      ],
+      "leetcode_ladder": [
+        {
+          "order": 1,
+          "leetcode_number": 1,
+          "title": "Two Sum",
+          "difficulty": "Easy",
+          "tests": "Index/value handling; bridge to hash maps",
+          "slug": "two-sum",
+          "url": "https://leetcode.com/problems/two-sum/"
+        },
+        {
+          "order": 2,
+          "leetcode_number": 121,
+          "title": "Best Time to Buy and Sell Stock",
+          "difficulty": "Easy",
+          "tests": "One-pass state tracking",
+          "slug": "best-time-to-buy-and-sell-stock",
+          "url": "https://leetcode.com/problems/best-time-to-buy-and-sell-stock/"
+        },
+        {
+          "order": 3,
+          "leetcode_number": 26,
+          "title": "Remove Duplicates from Sorted Array",
+          "difficulty": "Easy",
+          "tests": "Read/write pointers",
+          "slug": "remove-duplicates-from-sorted-array",
+          "url": "https://leetcode.com/problems/remove-duplicates-from-sorted-array/"
+        },
+        {
+          "order": 4,
+          "leetcode_number": 238,
+          "title": "Product of Array Except Self",
+          "difficulty": "Medium",
+          "tests": "Prefix/suffix",
+          "slug": "product-of-array-except-self",
+          "url": "https://leetcode.com/problems/product-of-array-except-self/"
+        },
+        {
+          "order": 5,
+          "leetcode_number": 53,
+          "title": "Maximum Subarray",
+          "difficulty": "Medium",
+          "tests": "Running state / Kadane",
+          "slug": "maximum-subarray",
+          "url": "https://leetcode.com/problems/maximum-subarray/"
+        },
+        {
+          "order": 6,
+          "leetcode_number": 54,
+          "title": "Spiral Matrix",
+          "difficulty": "Medium",
+          "tests": "Boundary simulation",
+          "slug": "spiral-matrix",
+          "url": "https://leetcode.com/problems/spiral-matrix/"
+        },
+        {
+          "order": 7,
+          "leetcode_number": 560,
+          "title": "Subarray Sum Equals K",
+          "difficulty": "Medium",
+          "tests": "Prefix sum + hash map",
+          "slug": "subarray-sum-equals-k",
+          "url": "https://leetcode.com/problems/subarray-sum-equals-k/"
+        }
+      ],
+      "combination_skills": [
+        "Arrays are the foundation for two pointers, sliding windows, binary search, heaps, DP tables, and graph adjacency lists."
+      ],
+      "graduation_requirement": "You can implement traversal, prefix sum, read/write compaction, and prefix/suffix logic from memory and explain when sorting changes the time/space trade-off."
+    },
+    {
+      "order": 2,
+      "id": "hash-maps-sets",
+      "title": "Hash Maps & Sets",
+      "goal": "Use hashing to trade memory for fast membership, frequency counting, grouping, and index lookup.",
+      "what_to_master": [
+        "Create dict/set structures and test membership in expected O(1).",
+        "Count frequencies with Counter or defaultdict(int).",
+        "Store value -> index or key -> metadata.",
+        "Group values using defaultdict(list).",
+        "Use a set to eliminate duplicates or detect previously seen states.",
+        "Combine prefix sums with a map of previous prefix values.",
+        "Understand when keys must be immutable/hashable."
+      ],
+      "recognition_signals": [
+        "Need to know whether something was seen before.",
+        "Need complement lookup such as target - x.",
+        "Need frequencies, duplicates, grouping, or anagram detection.",
+        "Brute force compares every pair -> a map may remove one loop.",
+        "Need number of previous states matching a condition -> map state to count."
+      ],
+      "templates": [
+        {
+          "name": "Frequency map",
+          "note": "Use when the answer depends on occurrence counts.",
+          "code": "from collections import Counter\ncounts = Counter(nums)\nfor value, freq in counts.items():\n    ..."
+        },
+        {
+          "name": "Complement lookup",
+          "note": "Classic way to turn an O(n^2) pair search into expected O(n).",
+          "code": "seen = {}\nfor i, x in enumerate(nums):\n    need = target - x\n    if need in seen:\n        return [seen[need], i]\n    seen[x] = i"
+        },
+        {
+          "name": "Grouping",
+          "note": "The central pattern for anagrams, buckets, adjacency lists, and categorized state.",
+          "code": "from collections import defaultdict\ngroups = defaultdict(list)\nfor item in items:\n    key = make_key(item)\n    groups[key].append(item)"
+        },
+        {
+          "name": "Prefix state frequency",
+          "note": "This is the canonical prefix-sum + hash-map counting template.",
+          "code": "count = 0\nprefix = 0\nfreq = {0: 1}\nfor x in nums:\n    prefix += x\n    count += freq.get(prefix - k, 0)\n    freq[prefix] = freq.get(prefix, 0) + 1"
+        }
+      ],
+      "common_mistakes": [
+        "Storing the current item before checking its complement in Two Sum when the same element cannot be reused.",
+        "Using a mutable list as a dictionary key.",
+        "Forgetting that dictionary/set O(1) is expected/amortized, not a mathematical worst-case guarantee.",
+        "Using Counter when you actually need original positions."
+      ],
+      "leetcode_ladder": [
+        {
+          "order": 1,
+          "leetcode_number": 1,
+          "title": "Two Sum",
+          "difficulty": "Easy",
+          "tests": "Complement lookup",
+          "slug": "two-sum",
+          "url": "https://leetcode.com/problems/two-sum/"
+        },
+        {
+          "order": 2,
+          "leetcode_number": 217,
+          "title": "Contains Duplicate",
+          "difficulty": "Easy",
+          "tests": "Set membership",
+          "slug": "contains-duplicate",
+          "url": "https://leetcode.com/problems/contains-duplicate/"
+        },
+        {
+          "order": 3,
+          "leetcode_number": 242,
+          "title": "Valid Anagram",
+          "difficulty": "Easy",
+          "tests": "Frequency counting",
+          "slug": "valid-anagram",
+          "url": "https://leetcode.com/problems/valid-anagram/"
+        },
+        {
+          "order": 4,
+          "leetcode_number": 49,
+          "title": "Group Anagrams",
+          "difficulty": "Medium",
+          "tests": "Canonical key + grouping",
+          "slug": "group-anagrams",
+          "url": "https://leetcode.com/problems/group-anagrams/"
+        },
+        {
+          "order": 5,
+          "leetcode_number": 128,
+          "title": "Longest Consecutive Sequence",
+          "difficulty": "Medium",
+          "tests": "Set-based sequence starts",
+          "slug": "longest-consecutive-sequence",
+          "url": "https://leetcode.com/problems/longest-consecutive-sequence/"
+        },
+        {
+          "order": 6,
+          "leetcode_number": 560,
+          "title": "Subarray Sum Equals K",
+          "difficulty": "Medium",
+          "tests": "Prefix frequency map",
+          "slug": "subarray-sum-equals-k",
+          "url": "https://leetcode.com/problems/subarray-sum-equals-k/"
+        },
+        {
+          "order": 7,
+          "leetcode_number": 380,
+          "title": "Insert Delete GetRandom O(1)",
+          "difficulty": "Medium",
+          "tests": "Map + dynamic array design",
+          "slug": "insert-delete-getrandom-o1",
+          "url": "https://leetcode.com/problems/insert-delete-getrandom-o1/"
+        }
+      ],
+      "graduation_requirement": "When you see repeated lookup or counting, you instinctively consider a dict/set and can explain exactly what the key and value represent."
+    },
+    {
+      "order": 3,
+      "id": "two-pointers",
+      "title": "Two Pointers",
+      "goal": "Control two indices or references so a quadratic search collapses into a linear scan whenever monotonic structure exists.",
+      "what_to_master": [
+        "Opposite-end pointers on sorted data.",
+        "Same-direction read/write pointers.",
+        "Fast/slow pointers for linked structures.",
+        "Pointer movement based on an invariant, not guessing.",
+        "Know when sorting first enables two pointers.",
+        "Avoid re-checking regions already proven impossible."
+      ],
+      "recognition_signals": [
+        "Sorted array + pair/triplet target.",
+        "Palindrome or symmetric comparison.",
+        "In-place removal/deduplication.",
+        "Need to shrink from both ends.",
+        "Linked-list middle/cycle -> fast/slow variant.",
+        "Brute force tests all pairs but moving one side can rule out many candidates."
+      ],
+      "templates": [
+        {
+          "name": "Opposite ends",
+          "note": "Correct only when pointer movement has a monotonic reason, usually sorted order.",
+          "code": "left, right = 0, len(nums) - 1\nwhile left < right:\n    total = nums[left] + nums[right]\n    if total == target:\n        return [left, right]\n    if total < target:\n        left += 1\n    else:\n        right -= 1"
+        },
+        {
+          "name": "Read/write",
+          "note": "Use when compressing or rearranging in place.",
+          "code": "write = 0\nfor read in range(len(nums)):\n    if should_keep(nums[read]):\n        nums[write] = nums[read]\n        write += 1"
+        },
+        {
+          "name": "Palindrome scan",
+          "note": "A clean example of symmetric pointer convergence.",
+          "code": "left, right = 0, len(s) - 1\nwhile left < right:\n    if s[left] != s[right]:\n        return False\n    left += 1\n    right -= 1\nreturn True"
+        }
+      ],
+      "common_mistakes": [
+        "Applying two pointers to unsorted data without a valid movement rule.",
+        "Moving both pointers when only one side has been proven impossible.",
+        "For 3Sum, forgetting duplicate skipping after sorting."
+      ],
+      "leetcode_ladder": [
+        {
+          "order": 1,
+          "leetcode_number": 125,
+          "title": "Valid Palindrome",
+          "difficulty": "Easy",
+          "tests": "Opposite ends",
+          "slug": "valid-palindrome",
+          "url": "https://leetcode.com/problems/valid-palindrome/"
+        },
+        {
+          "order": 2,
+          "leetcode_number": 167,
+          "title": "Two Sum II - Input Array Is Sorted",
+          "difficulty": "Medium",
+          "tests": "Sorted two pointers",
+          "slug": "two-sum-ii-input-array-is-sorted",
+          "url": "https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/"
+        },
+        {
+          "order": 3,
+          "leetcode_number": 26,
+          "title": "Remove Duplicates from Sorted Array",
+          "difficulty": "Easy",
+          "tests": "Read/write",
+          "slug": "remove-duplicates-from-sorted-array",
+          "url": "https://leetcode.com/problems/remove-duplicates-from-sorted-array/"
+        },
+        {
+          "order": 4,
+          "leetcode_number": 11,
+          "title": "Container With Most Water",
+          "difficulty": "Medium",
+          "tests": "Movement invariant",
+          "slug": "container-with-most-water",
+          "url": "https://leetcode.com/problems/container-with-most-water/"
+        },
+        {
+          "order": 5,
+          "leetcode_number": 15,
+          "title": "3Sum",
+          "difficulty": "Medium",
+          "tests": "Sort + fixed index + two pointers",
+          "slug": "3sum",
+          "url": "https://leetcode.com/problems/3sum/"
+        },
+        {
+          "order": 6,
+          "leetcode_number": 42,
+          "title": "Trapping Rain Water",
+          "difficulty": "Hard",
+          "tests": "Two-end state / maxima",
+          "slug": "trapping-rain-water",
+          "url": "https://leetcode.com/problems/trapping-rain-water/"
+        }
+      ],
+      "graduation_requirement": "You can state why moving the left or right pointer cannot discard a valid better answer. If you cannot explain that invariant, you are not yet using two pointers safely."
+    },
+    {
+      "order": 4,
+      "id": "sliding-window",
+      "title": "Sliding Window",
+      "goal": "Solve contiguous subarray/substring problems by maintaining exactly the information needed for a moving range.",
+      "what_to_master": [
+        "Fixed-size windows.",
+        "Variable-size windows that expand and shrink.",
+        "Maintain window sum/counts without recomputing.",
+        "Know the condition that makes a window valid or invalid.",
+        "Use frequency dictionaries for character windows.",
+        "Distinguish \"longest valid\" from \"shortest valid\" update timing.",
+        "Recognize when negative numbers break a standard monotonic window and prefix sums are needed instead."
+      ],
+      "recognition_signals": [
+        "Longest/shortest contiguous substring or subarray.",
+        "At most / at least / exactly K conditions.",
+        "Repeatedly recomputing information for adjacent ranges.",
+        "String frequency or uniqueness condition over a contiguous window.",
+        "Positive numbers + minimum length target often enables shrink-while-valid."
+      ],
+      "templates": [
+        {
+          "name": "Fixed window",
+          "note": "Every step removes exactly one old element and adds one new element.",
+          "code": "window_sum = sum(nums[:k])\nbest = window_sum\nfor right in range(k, len(nums)):\n    window_sum += nums[right] - nums[right - k]\n    best = max(best, window_sum)"
+        },
+        {
+          "name": "Variable window",
+          "note": "Canonical template for longest valid windows.",
+          "code": "left = 0\nfor right in range(len(nums)):\n    add(nums[right])\n\n    while window_is_invalid():\n        remove(nums[left])\n        left += 1\n\n    best = max(best, right - left + 1)"
+        },
+        {
+          "name": "Frequency window",
+          "note": "The window itself is represented by counts rather than slicing strings.",
+          "code": "from collections import defaultdict\ncount = defaultdict(int)\nleft = 0\nfor right, ch in enumerate(s):\n    count[ch] += 1\n    while count[ch] > 1:\n        count[s[left]] -= 1\n        left += 1\n    best = max(best, right - left + 1)"
+        }
+      ],
+      "common_mistakes": [
+        "Using slicing inside every iteration and accidentally making the algorithm O(n*k).",
+        "Updating a minimum answer after the window becomes invalid instead of while it is valid.",
+        "Using standard positive-number shrinking logic when negative values destroy monotonicity."
+      ],
+      "leetcode_ladder": [
+        {
+          "order": 1,
+          "leetcode_number": 643,
+          "title": "Maximum Average Subarray I",
+          "difficulty": "Easy",
+          "tests": "Fixed window",
+          "slug": "maximum-average-subarray-i",
+          "url": "https://leetcode.com/problems/maximum-average-subarray-i/"
+        },
+        {
+          "order": 2,
+          "leetcode_number": 3,
+          "title": "Longest Substring Without Repeating Characters",
+          "difficulty": "Medium",
+          "tests": "Variable window + map",
+          "slug": "longest-substring-without-repeating-characters",
+          "url": "https://leetcode.com/problems/longest-substring-without-repeating-characters/"
+        },
+        {
+          "order": 3,
+          "leetcode_number": 209,
+          "title": "Minimum Size Subarray Sum",
+          "difficulty": "Medium",
+          "tests": "Shrink while valid",
+          "slug": "minimum-size-subarray-sum",
+          "url": "https://leetcode.com/problems/minimum-size-subarray-sum/"
+        },
+        {
+          "order": 4,
+          "leetcode_number": 424,
+          "title": "Longest Repeating Character Replacement",
+          "difficulty": "Medium",
+          "tests": "Window invariant",
+          "slug": "longest-repeating-character-replacement",
+          "url": "https://leetcode.com/problems/longest-repeating-character-replacement/"
+        },
+        {
+          "order": 5,
+          "leetcode_number": 567,
+          "title": "Permutation in String",
+          "difficulty": "Medium",
+          "tests": "Frequency window",
+          "slug": "permutation-in-string",
+          "url": "https://leetcode.com/problems/permutation-in-string/"
+        },
+        {
+          "order": 6,
+          "leetcode_number": 76,
+          "title": "Minimum Window Substring",
+          "difficulty": "Hard",
+          "tests": "Minimum covering window",
+          "slug": "minimum-window-substring",
+          "url": "https://leetcode.com/problems/minimum-window-substring/"
+        }
+      ],
+      "graduation_requirement": "You can write fixed and variable window templates from memory and, before coding, say what enters the window, what leaves, and the exact validity condition."
+    },
+    {
+      "order": 5,
+      "id": "stacks",
+      "title": "Stacks",
+      "goal": "Use LIFO state to model nested structure, undo behavior, previous unresolved elements, and monotonic relationships.",
+      "what_to_master": [
+        "Push/pop/peek in Python with a list.",
+        "Match nested delimiters.",
+        "Store indices when distance matters.",
+        "Use a monotonic increasing or decreasing stack.",
+        "Understand \"next greater/smaller\" and \"previous greater/smaller.\"",
+        "Simulate recursion when appropriate.",
+        "Evaluate postfix expressions."
+      ],
+      "recognition_signals": [
+        "Nested parentheses/brackets/tags.",
+        "Need the most recent unmatched item.",
+        "Next greater/smaller element.",
+        "Daily temperatures / stock span / histogram.",
+        "Undo/backtracking-like linear history.",
+        "Expression evaluation."
+      ],
+      "templates": [
+        {
+          "name": "Basic stack",
+          "note": "Python lists provide efficient append/pop at the end.",
+          "code": "stack = []\nstack.append(value)\ntop = stack[-1]\nvalue = stack.pop()"
+        },
+        {
+          "name": "Matching delimiters",
+          "note": "The top of the stack is the only opening token that can legally match next.",
+          "code": "pairs = {')': '(', ']': '[', '}': '{'}\nstack = []\nfor ch in s:\n    if ch in '([{':\n        stack.append(ch)\n    elif ch in pairs:\n        if not stack or stack.pop() != pairs[ch]:\n            return False\nreturn not stack"
+        },
+        {
+          "name": "Monotonic stack",
+          "note": "Items stay unresolved until the current value provides their answer.",
+          "code": "stack = []  # indices, values decreasing\nanswer = [-1] * len(nums)\nfor i, x in enumerate(nums):\n    while stack and nums[stack[-1]] < x:\n        j = stack.pop()\n        answer[j] = x\n    stack.append(i)"
+        }
+      ],
+      "common_mistakes": [
+        "Storing values when the answer requires index distance.",
+        "Popping without checking whether the stack is empty.",
+        "Memorizing \"increasing/decreasing\" terminology instead of asking which unresolved elements should remain on the stack."
+      ],
+      "leetcode_ladder": [
+        {
+          "order": 1,
+          "leetcode_number": 20,
+          "title": "Valid Parentheses",
+          "difficulty": "Easy",
+          "tests": "Basic stack",
+          "slug": "valid-parentheses",
+          "url": "https://leetcode.com/problems/valid-parentheses/"
+        },
+        {
+          "order": 2,
+          "leetcode_number": 155,
+          "title": "Min Stack",
+          "difficulty": "Medium",
+          "tests": "Augmented stack state",
+          "slug": "min-stack",
+          "url": "https://leetcode.com/problems/min-stack/"
+        },
+        {
+          "order": 3,
+          "leetcode_number": 150,
+          "title": "Evaluate Reverse Polish Notation",
+          "difficulty": "Medium",
+          "tests": "Expression stack",
+          "slug": "evaluate-reverse-polish-notation",
+          "url": "https://leetcode.com/problems/evaluate-reverse-polish-notation/"
+        },
+        {
+          "order": 4,
+          "leetcode_number": 739,
+          "title": "Daily Temperatures",
+          "difficulty": "Medium",
+          "tests": "Monotonic stack",
+          "slug": "daily-temperatures",
+          "url": "https://leetcode.com/problems/daily-temperatures/"
+        },
+        {
+          "order": 5,
+          "leetcode_number": 496,
+          "title": "Next Greater Element I",
+          "difficulty": "Easy",
+          "tests": "Next greater pattern",
+          "slug": "next-greater-element-i",
+          "url": "https://leetcode.com/problems/next-greater-element-i/"
+        },
+        {
+          "order": 6,
+          "leetcode_number": 84,
+          "title": "Largest Rectangle in Histogram",
+          "difficulty": "Hard",
+          "tests": "Monotonic boundaries",
+          "slug": "largest-rectangle-in-histogram",
+          "url": "https://leetcode.com/problems/largest-rectangle-in-histogram/"
+        }
+      ],
+      "graduation_requirement": "You can identify what each stack entry represents and whether the stack is monotonic by value or by some derived property."
+    },
+    {
+      "order": 6,
+      "id": "queues-deques",
+      "title": "Queues & Deques",
+      "goal": "Use FIFO order for level-by-level processing and a deque when both ends must be updated efficiently.",
+      "what_to_master": [
+        "Use collections.deque, not list.pop(0).",
+        "Enqueue with append and dequeue with popleft.",
+        "Process one BFS level using the current queue length.",
+        "Use a monotonic deque for sliding-window extrema.",
+        "Understand queue-based simulations and scheduling."
+      ],
+      "recognition_signals": [
+        "First-in-first-out processing.",
+        "Shortest unweighted path / level order -> BFS queue.",
+        "Streaming tasks in arrival order.",
+        "Need max/min of every window -> monotonic deque.",
+        "Repeated operations at both ends."
+      ],
+      "templates": [
+        {
+          "name": "FIFO queue",
+          "note": "Deque popleft() is O(1), unlike removing index 0 from a list.",
+          "code": "from collections import deque\nq = deque([start])\nwhile q:\n    node = q.popleft()\n    for nxt in neighbors(node):\n        q.append(nxt)"
+        },
+        {
+          "name": "Level processing",
+          "note": "Snapshot the level size before adding next-level nodes.",
+          "code": "while q:\n    level_size = len(q)\n    for _ in range(level_size):\n        node = q.popleft()\n        ..."
+        },
+        {
+          "name": "Monotonic deque",
+          "note": "The front is always the maximum of the current window.",
+          "code": "from collections import deque\ndq = deque()  # indices, values decreasing\nfor right, x in enumerate(nums):\n    while dq and nums[dq[-1]] <= x:\n        dq.pop()\n    dq.append(right)\n    if dq[0] <= right - k:\n        dq.popleft()\n    if right >= k - 1:\n        ans.append(nums[dq[0]])"
+        }
+      ],
+      "common_mistakes": [
+        "Using pop(0) on a Python list.",
+        "Using len(q) dynamically inside a level loop after adding new nodes.",
+        "For monotonic deque, forgetting to remove indices that are outside the window."
+      ],
+      "leetcode_ladder": [
+        {
+          "order": 1,
+          "leetcode_number": 933,
+          "title": "Number of Recent Calls",
+          "difficulty": "Easy",
+          "tests": "Queue expiration",
+          "slug": "number-of-recent-calls",
+          "url": "https://leetcode.com/problems/number-of-recent-calls/"
+        },
+        {
+          "order": 2,
+          "leetcode_number": 102,
+          "title": "Binary Tree Level Order Traversal",
+          "difficulty": "Medium",
+          "tests": "BFS level queue",
+          "slug": "binary-tree-level-order-traversal",
+          "url": "https://leetcode.com/problems/binary-tree-level-order-traversal/"
+        },
+        {
+          "order": 3,
+          "leetcode_number": 994,
+          "title": "Rotting Oranges",
+          "difficulty": "Medium",
+          "tests": "Multi-source BFS",
+          "slug": "rotting-oranges",
+          "url": "https://leetcode.com/problems/rotting-oranges/"
+        },
+        {
+          "order": 4,
+          "leetcode_number": 239,
+          "title": "Sliding Window Maximum",
+          "difficulty": "Hard",
+          "tests": "Monotonic deque",
+          "slug": "sliding-window-maximum",
+          "url": "https://leetcode.com/problems/sliding-window-maximum/"
+        }
+      ],
+      "graduation_requirement": "You can implement a queue and a level-order loop without looking anything up, and you understand why monotonic deque operations are amortized O(n)."
+    },
+    {
+      "order": 7,
+      "id": "linked-lists",
+      "title": "Linked Lists",
+      "goal": "Master pointer/reference manipulation so linked-list questions become combinations of traversal, dummy nodes, reversal, fast/slow pointers, merging, and reconnection.",
+      "what_to_master": [
+        "Understand ListNode, head, next, and None.",
+        "Traverse and save next before rewiring.",
+        "Use dummy/sentinel nodes to simplify head changes.",
+        "Reverse a list iteratively.",
+        "Use fast/slow pointers for middle and cycles.",
+        "Use a fixed pointer gap for Nth-from-end.",
+        "Merge two sorted lists with a tail pointer.",
+        "Split + reverse + merge/comparison.",
+        "Reverse a sublist or groups.",
+        "Understand doubly linked list operations for cache design."
+      ],
+      "recognition_signals": [
+        "Head may change -> dummy node.",
+        "Middle/cycle -> fast and slow.",
+        "Nth from end -> fixed gap.",
+        "Links must point backward -> reversal.",
+        "Compare or reorder two halves -> find middle + reverse.",
+        "Two sorted lists -> dummy + tail merge.",
+        "O(1) cache removal/move -> doubly linked list + hash map."
+      ],
+      "templates": [
+        {
+          "name": "ListNode + traversal",
+          "note": "Always be precise about whether a variable stores a node reference or a value.",
+          "code": "class ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\ncurr = head\nwhile curr:\n    curr = curr.next"
+        },
+        {
+          "name": "Dummy node",
+          "note": "Dummy nodes remove special-case logic when the head can change.",
+          "code": "dummy = ListNode(0, head)\nprev = dummy\ncurr = head\n# modify using prev/curr\nreturn dummy.next"
+        },
+        {
+          "name": "Reverse",
+          "note": "SAVE -> REVERSE -> MOVE prev -> MOVE curr.",
+          "code": "prev = None\ncurr = head\nwhile curr:\n    nxt = curr.next\n    curr.next = prev\n    prev = curr\n    curr = nxt\nreturn prev"
+        },
+        {
+          "name": "Fast/slow middle",
+          "note": "When fast finishes, slow is around the middle.",
+          "code": "slow = fast = head\nwhile fast and fast.next:\n    slow = slow.next\n    fast = fast.next.next\nreturn slow"
+        },
+        {
+          "name": "Merge two sorted lists",
+          "note": "Attach one node at a time while preserving both remaining suffixes.",
+          "code": "dummy = ListNode()\ntail = dummy\nwhile a and b:\n    if a.val <= b.val:\n        tail.next, a = a, a.next\n    else:\n        tail.next, b = b, b.next\n    tail = tail.next\ntail.next = a or b\nreturn dummy.next"
+        }
+      ],
+      "common_mistakes": [
+        "Changing curr.next before saving the original next node.",
+        "Returning dummy instead of dummy.next.",
+        "Comparing node objects when you intended to compare node values.",
+        "Failing to reconnect the prefix/suffix after a partial reversal."
+      ],
+      "leetcode_ladder": [
+        {
+          "order": 1,
+          "leetcode_number": 203,
+          "title": "Remove Linked List Elements",
+          "difficulty": "Easy",
+          "tests": "Deletion + dummy",
+          "slug": "remove-linked-list-elements",
+          "url": "https://leetcode.com/problems/remove-linked-list-elements/"
+        },
+        {
+          "order": 2,
+          "leetcode_number": 206,
+          "title": "Reverse Linked List",
+          "difficulty": "Easy",
+          "tests": "Core reversal",
+          "slug": "reverse-linked-list",
+          "url": "https://leetcode.com/problems/reverse-linked-list/"
+        },
+        {
+          "order": 3,
+          "leetcode_number": 876,
+          "title": "Middle of the Linked List",
+          "difficulty": "Easy",
+          "tests": "Fast/slow",
+          "slug": "middle-of-the-linked-list",
+          "url": "https://leetcode.com/problems/middle-of-the-linked-list/"
+        },
+        {
+          "order": 4,
+          "leetcode_number": 141,
+          "title": "Linked List Cycle",
+          "difficulty": "Easy",
+          "tests": "Floyd cycle detection",
+          "slug": "linked-list-cycle",
+          "url": "https://leetcode.com/problems/linked-list-cycle/"
+        },
+        {
+          "order": 5,
+          "leetcode_number": 19,
+          "title": "Remove Nth Node From End",
+          "difficulty": "Medium",
+          "tests": "Dummy + fixed gap",
+          "slug": "remove-nth-node-from-end-of-list",
+          "url": "https://leetcode.com/problems/remove-nth-node-from-end-of-list/"
+        },
+        {
+          "order": 6,
+          "leetcode_number": 21,
+          "title": "Merge Two Sorted Lists",
+          "difficulty": "Easy",
+          "tests": "Merge",
+          "slug": "merge-two-sorted-lists",
+          "url": "https://leetcode.com/problems/merge-two-sorted-lists/"
+        },
+        {
+          "order": 7,
+          "leetcode_number": 234,
+          "title": "Palindrome Linked List",
+          "difficulty": "Easy",
+          "tests": "Middle + reverse + compare",
+          "slug": "palindrome-linked-list",
+          "url": "https://leetcode.com/problems/palindrome-linked-list/"
+        },
+        {
+          "order": 8,
+          "leetcode_number": 92,
+          "title": "Reverse Linked List II",
+          "difficulty": "Medium",
+          "tests": "Partial reversal",
+          "slug": "reverse-linked-list-ii",
+          "url": "https://leetcode.com/problems/reverse-linked-list-ii/"
+        },
+        {
+          "order": 9,
+          "leetcode_number": 143,
+          "title": "Reorder List",
+          "difficulty": "Medium",
+          "tests": "Middle + reverse + merge",
+          "slug": "reorder-list",
+          "url": "https://leetcode.com/problems/reorder-list/"
+        },
+        {
+          "order": 10,
+          "leetcode_number": 138,
+          "title": "Copy List with Random Pointer",
+          "difficulty": "Medium",
+          "tests": "Hash map + references",
+          "slug": "copy-list-with-random-pointer",
+          "url": "https://leetcode.com/problems/copy-list-with-random-pointer/"
+        },
+        {
+          "order": 11,
+          "leetcode_number": 23,
+          "title": "Merge k Sorted Lists",
+          "difficulty": "Hard",
+          "tests": "Heap/divide-and-conquer",
+          "slug": "merge-k-sorted-lists",
+          "url": "https://leetcode.com/problems/merge-k-sorted-lists/"
+        },
+        {
+          "order": 12,
+          "leetcode_number": 25,
+          "title": "Reverse Nodes in k-Group",
+          "difficulty": "Hard",
+          "tests": "Group reversal",
+          "slug": "reverse-nodes-in-k-group",
+          "url": "https://leetcode.com/problems/reverse-nodes-in-k-group/"
+        },
+        {
+          "order": 13,
+          "leetcode_number": 146,
+          "title": "LRU Cache",
+          "difficulty": "Medium",
+          "tests": "Hash map + doubly linked list",
+          "slug": "lru-cache",
+          "url": "https://leetcode.com/problems/lru-cache/"
+        }
+      ],
+      "combination_skills": [
+        "Reorder List = middle + split + reverse + alternating merge.",
+        "Sort List = middle + divide-and-conquer + merge.",
+        "LRU Cache = hash map + doubly linked list + sentinels."
+      ],
+      "graduation_requirement": "On a blank screen you can implement reverse(head), find_middle(head), merge(a,b), delete using a dummy node, and detect a cycle, and you can trace every pointer without losing the remaining list."
+    },
+    {
+      "order": 8,
+      "id": "binary-search",
+      "title": "Binary Search",
+      "goal": "Master not just \"find target,\" but the family of boundary and answer-space searches that exploit monotonic truth.",
+      "what_to_master": [
+        "Classic exact search.",
+        "Lower bound / first true.",
+        "Upper bound / last true.",
+        "Search in rotated sorted arrays.",
+        "Binary search on answer space.",
+        "Avoid overflow concerns conceptually and off-by-one errors practically.",
+        "State a monotonic predicate before using answer-space search."
+      ],
+      "recognition_signals": [
+        "Sorted input.",
+        "Need first/last occurrence or insertion point.",
+        "Condition changes from false to true exactly once.",
+        "Asked for minimum feasible / maximum possible value over a numeric range.",
+        "A brute-force answer range is huge, but feasibility can be checked efficiently."
+      ],
+      "templates": [
+        {
+          "name": "Exact search",
+          "note": "Closed interval [left, right]. Keep interval conventions consistent.",
+          "code": "left, right = 0, len(nums) - 1\nwhile left <= right:\n    mid = (left + right) // 2\n    if nums[mid] == target:\n        return mid\n    if nums[mid] < target:\n        left = mid + 1\n    else:\n        right = mid - 1\nreturn -1"
+        },
+        {
+          "name": "First true / lower bound",
+          "note": "Half-open-style boundary search. The answer is the first index where condition becomes true.",
+          "code": "left, right = 0, n\nwhile left < right:\n    mid = (left + right) // 2\n    if condition(mid):\n        right = mid\n    else:\n        left = mid + 1\nreturn left"
+        },
+        {
+          "name": "Binary search on answer",
+          "note": "Replace array indexing with a monotonic feasibility function.",
+          "code": "left, right = min_answer, max_answer\nwhile left < right:\n    mid = (left + right) // 2\n    if feasible(mid):\n        right = mid\n    else:\n        left = mid + 1\nreturn left"
+        }
+      ],
+      "common_mistakes": [
+        "Mixing closed and half-open interval rules.",
+        "Using right = mid - 1 inside a first-true template that expects right = mid.",
+        "Binary-searching a predicate that is not monotonic."
+      ],
+      "leetcode_ladder": [
+        {
+          "order": 1,
+          "leetcode_number": 704,
+          "title": "Binary Search",
+          "difficulty": "Easy",
+          "tests": "Exact search",
+          "slug": "binary-search",
+          "url": "https://leetcode.com/problems/binary-search/"
+        },
+        {
+          "order": 2,
+          "leetcode_number": 35,
+          "title": "Search Insert Position",
+          "difficulty": "Easy",
+          "tests": "Lower-bound intuition",
+          "slug": "search-insert-position",
+          "url": "https://leetcode.com/problems/search-insert-position/"
+        },
+        {
+          "order": 3,
+          "leetcode_number": 34,
+          "title": "Find First and Last Position of Element",
+          "difficulty": "Medium",
+          "tests": "Two boundary searches",
+          "slug": "find-first-and-last-position-of-element-in-sorted-array",
+          "url": "https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/"
+        },
+        {
+          "order": 4,
+          "leetcode_number": 153,
+          "title": "Find Minimum in Rotated Sorted Array",
+          "difficulty": "Medium",
+          "tests": "Rotated invariant",
+          "slug": "find-minimum-in-rotated-sorted-array",
+          "url": "https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/"
+        },
+        {
+          "order": 5,
+          "leetcode_number": 33,
+          "title": "Search in Rotated Sorted Array",
+          "difficulty": "Medium",
+          "tests": "Identify sorted half",
+          "slug": "search-in-rotated-sorted-array",
+          "url": "https://leetcode.com/problems/search-in-rotated-sorted-array/"
+        },
+        {
+          "order": 6,
+          "leetcode_number": 875,
+          "title": "Koko Eating Bananas",
+          "difficulty": "Medium",
+          "tests": "Search answer space",
+          "slug": "koko-eating-bananas",
+          "url": "https://leetcode.com/problems/koko-eating-bananas/"
+        },
+        {
+          "order": 7,
+          "leetcode_number": 1011,
+          "title": "Capacity To Ship Packages Within D Days",
+          "difficulty": "Medium",
+          "tests": "Minimum feasible capacity",
+          "slug": "capacity-to-ship-packages-within-d-days",
+          "url": "https://leetcode.com/problems/capacity-to-ship-packages-within-d-days/"
+        },
+        {
+          "order": 8,
+          "leetcode_number": 410,
+          "title": "Split Array Largest Sum",
+          "difficulty": "Hard",
+          "tests": "Answer-space binary search",
+          "slug": "split-array-largest-sum",
+          "url": "https://leetcode.com/problems/split-array-largest-sum/"
+        }
+      ],
+      "graduation_requirement": "You can write one exact-search template and one first-true template from memory, and for answer-space problems you can verbally prove that feasible(x) is monotonic."
+    },
+    {
+      "order": 9,
+      "id": "trees",
+      "title": "Trees",
+      "goal": "Build recursive and iterative intuition for hierarchical structures before moving to general graphs.",
+      "what_to_master": [
+        "TreeNode structure and root/left/right references.",
+        "Preorder, inorder, postorder, and level-order traversal.",
+        "Recursive \"return information upward\" thinking.",
+        "Top-down \"carry information downward\" thinking.",
+        "Height/depth and subtree aggregation.",
+        "BST ordering property.",
+        "Lowest common ancestor patterns.",
+        "Serialize structure mentally with null children."
+      ],
+      "recognition_signals": [
+        "Hierarchical parent/child input.",
+        "Need subtree answer -> postorder often natural.",
+        "Need path state from root -> preorder/top-down DFS.",
+        "Need values sorted in a BST -> inorder.",
+        "Need level-by-level -> BFS.",
+        "Need nearest common ancestor -> recursive split logic."
+      ],
+      "templates": [
+        {
+          "name": "Tree node",
+          "note": "Tree questions are mostly about choosing what each recursive call returns.",
+          "code": "class TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right"
+        },
+        {
+          "name": "Recursive DFS",
+          "note": "This postorder skeleton solves a remarkable number of subtree problems.",
+          "code": "def dfs(node):\n    if not node:\n        return base\n    left = dfs(node.left)\n    right = dfs(node.right)\n    return combine(node, left, right)"
+        },
+        {
+          "name": "Iterative inorder",
+          "note": "Essential for BST iteration without recursion.",
+          "code": "stack = []\ncurr = root\nwhile curr or stack:\n    while curr:\n        stack.append(curr)\n        curr = curr.left\n    curr = stack.pop()\n    visit(curr)\n    curr = curr.right"
+        },
+        {
+          "name": "Level order",
+          "note": "Each outer loop processes one tree depth.",
+          "code": "from collections import deque\nq = deque([root]) if root else deque()\nwhile q:\n    for _ in range(len(q)):\n        node = q.popleft()\n        if node.left: q.append(node.left)\n        if node.right: q.append(node.right)"
+        }
+      ],
+      "common_mistakes": [
+        "Confusing node depth with subtree height.",
+        "For BST validation, checking only parent-child relationships instead of global bounds.",
+        "Returning the global answer from each recursive call when the parent actually needs a different local quantity."
+      ],
+      "leetcode_ladder": [
+        {
+          "order": 1,
+          "leetcode_number": 104,
+          "title": "Maximum Depth of Binary Tree",
+          "difficulty": "Easy",
+          "tests": "Basic recursion",
+          "slug": "maximum-depth-of-binary-tree",
+          "url": "https://leetcode.com/problems/maximum-depth-of-binary-tree/"
+        },
+        {
+          "order": 2,
+          "leetcode_number": 100,
+          "title": "Same Tree",
+          "difficulty": "Easy",
+          "tests": "Parallel recursion",
+          "slug": "same-tree",
+          "url": "https://leetcode.com/problems/same-tree/"
+        },
+        {
+          "order": 3,
+          "leetcode_number": 226,
+          "title": "Invert Binary Tree",
+          "difficulty": "Easy",
+          "tests": "Structural recursion",
+          "slug": "invert-binary-tree",
+          "url": "https://leetcode.com/problems/invert-binary-tree/"
+        },
+        {
+          "order": 4,
+          "leetcode_number": 102,
+          "title": "Binary Tree Level Order Traversal",
+          "difficulty": "Medium",
+          "tests": "BFS",
+          "slug": "binary-tree-level-order-traversal",
+          "url": "https://leetcode.com/problems/binary-tree-level-order-traversal/"
+        },
+        {
+          "order": 5,
+          "leetcode_number": 98,
+          "title": "Validate Binary Search Tree",
+          "difficulty": "Medium",
+          "tests": "Bounds/inorder",
+          "slug": "validate-binary-search-tree",
+          "url": "https://leetcode.com/problems/validate-binary-search-tree/"
+        },
+        {
+          "order": 6,
+          "leetcode_number": 230,
+          "title": "Kth Smallest Element in a BST",
+          "difficulty": "Medium",
+          "tests": "BST inorder",
+          "slug": "kth-smallest-element-in-a-bst",
+          "url": "https://leetcode.com/problems/kth-smallest-element-in-a-bst/"
+        },
+        {
+          "order": 7,
+          "leetcode_number": 236,
+          "title": "Lowest Common Ancestor of a Binary Tree",
+          "difficulty": "Medium",
+          "tests": "Recursive split",
+          "slug": "lowest-common-ancestor-of-a-binary-tree",
+          "url": "https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/"
+        },
+        {
+          "order": 8,
+          "leetcode_number": 543,
+          "title": "Diameter of Binary Tree",
+          "difficulty": "Easy",
+          "tests": "Return height; update global answer",
+          "slug": "diameter-of-binary-tree",
+          "url": "https://leetcode.com/problems/diameter-of-binary-tree/"
+        },
+        {
+          "order": 9,
+          "leetcode_number": 124,
+          "title": "Binary Tree Maximum Path Sum",
+          "difficulty": "Hard",
+          "tests": "Postorder state design",
+          "slug": "binary-tree-maximum-path-sum",
+          "url": "https://leetcode.com/problems/binary-tree-maximum-path-sum/"
+        }
+      ],
+      "graduation_requirement": "You can implement recursive DFS and level-order BFS from memory and, for a new tree problem, define in one sentence what dfs(node) returns."
+    },
+    {
+      "order": 10,
+      "id": "dfs",
+      "title": "Depth-First Search (DFS)",
+      "goal": "Master exploration by going deep before backtracking; use it on trees, grids, and graphs with explicit visited state.",
+      "what_to_master": [
+        "Recursive and iterative DFS.",
+        "Visited sets for graphs.",
+        "Grid boundary checks and marking.",
+        "Connected components.",
+        "Postorder DFS for dependent computations.",
+        "Cycle detection with recursion state/colors in directed graphs.",
+        "Understand recursion depth limitations in Python."
+      ],
+      "recognition_signals": [
+        "Explore an entire connected region.",
+        "Count islands/components.",
+        "Path existence when shortest distance is not required.",
+        "Need postorder dependency processing.",
+        "Backtracking uses DFS but additionally undoes choices."
+      ],
+      "templates": [
+        {
+          "name": "Graph DFS recursive",
+          "note": "Visited state prevents infinite loops in cyclic graphs.",
+          "code": "def dfs(node):\n    if node in visited:\n        return\n    visited.add(node)\n    for nei in graph[node]:\n        dfs(nei)"
+        },
+        {
+          "name": "Graph DFS iterative",
+          "note": "Useful when recursion depth could be large.",
+          "code": "stack = [start]\nvisited = {start}\nwhile stack:\n    node = stack.pop()\n    for nei in graph[node]:\n        if nei not in visited:\n            visited.add(nei)\n            stack.append(nei)"
+        },
+        {
+          "name": "Grid DFS",
+          "note": "Mark when entering so the same cell is never processed twice.",
+          "code": "def dfs(r, c):\n    if r < 0 or r == rows or c < 0 or c == cols:\n        return\n    if grid[r][c] != '1':\n        return\n    grid[r][c] = '0'\n    dfs(r+1,c); dfs(r-1,c); dfs(r,c+1); dfs(r,c-1)"
+        }
+      ],
+      "common_mistakes": [
+        "Marking visited after recursively exploring neighbors, allowing duplicate recursion.",
+        "Using recursion on extremely deep graphs without considering Python recursion limits.",
+        "Conflating \"visited ever\" with \"currently in recursion path\" for directed-cycle detection."
+      ],
+      "leetcode_ladder": [
+        {
+          "order": 1,
+          "leetcode_number": 200,
+          "title": "Number of Islands",
+          "difficulty": "Medium",
+          "tests": "Grid components",
+          "slug": "number-of-islands",
+          "url": "https://leetcode.com/problems/number-of-islands/"
+        },
+        {
+          "order": 2,
+          "leetcode_number": 695,
+          "title": "Max Area of Island",
+          "difficulty": "Medium",
+          "tests": "Return component size",
+          "slug": "max-area-of-island",
+          "url": "https://leetcode.com/problems/max-area-of-island/"
+        },
+        {
+          "order": 3,
+          "leetcode_number": 547,
+          "title": "Number of Provinces",
+          "difficulty": "Medium",
+          "tests": "Graph components",
+          "slug": "number-of-provinces",
+          "url": "https://leetcode.com/problems/number-of-provinces/"
+        },
+        {
+          "order": 4,
+          "leetcode_number": 133,
+          "title": "Clone Graph",
+          "difficulty": "Medium",
+          "tests": "DFS + map",
+          "slug": "clone-graph",
+          "url": "https://leetcode.com/problems/clone-graph/"
+        },
+        {
+          "order": 5,
+          "leetcode_number": 207,
+          "title": "Course Schedule",
+          "difficulty": "Medium",
+          "tests": "Directed cycle detection",
+          "slug": "course-schedule",
+          "url": "https://leetcode.com/problems/course-schedule/"
+        },
+        {
+          "order": 6,
+          "leetcode_number": 417,
+          "title": "Pacific Atlantic Water Flow",
+          "difficulty": "Medium",
+          "tests": "Reverse reachability DFS/BFS",
+          "slug": "pacific-atlantic-water-flow",
+          "url": "https://leetcode.com/problems/pacific-atlantic-water-flow/"
+        }
+      ],
+      "graduation_requirement": "You can perform DFS on a tree, adjacency-list graph, and grid without confusing boundary, visited, and base-case responsibilities."
+    },
+    {
+      "order": 11,
+      "id": "bfs",
+      "title": "Breadth-First Search (BFS)",
+      "goal": "Use level-by-level exploration to obtain shortest paths in unweighted state spaces and to propagate from one or many sources.",
+      "what_to_master": [
+        "Single-source BFS.",
+        "Multi-source BFS.",
+        "Level/distance tracking.",
+        "Visited when enqueuing, not when dequeuing.",
+        "Grid BFS and state-space BFS.",
+        "Bidirectional BFS concept for very large shortest-path spaces."
+      ],
+      "recognition_signals": [
+        "Shortest number of edges/steps in an unweighted graph.",
+        "Minimum moves in a grid.",
+        "All sources spread simultaneously.",
+        "Nearest target / transformation sequence.",
+        "Tree level order."
+      ],
+      "templates": [
+        {
+          "name": "Shortest-path BFS",
+          "note": "The first time an unweighted state is reached is via a shortest path.",
+          "code": "from collections import deque\nq = deque([(start, 0)])\nvisited = {start}\nwhile q:\n    node, dist = q.popleft()\n    if is_goal(node):\n        return dist\n    for nei in neighbors(node):\n        if nei not in visited:\n            visited.add(nei)\n            q.append((nei, dist + 1))"
+        },
+        {
+          "name": "Multi-source BFS",
+          "note": "All sources begin at distance 0 and expand together.",
+          "code": "q = deque(all_sources)\nvisited = set(all_sources)\ndistance = 0\nwhile q:\n    for _ in range(len(q)):\n        node = q.popleft()\n        for nei in neighbors(node):\n            if nei not in visited:\n                visited.add(nei)\n                q.append(nei)\n    distance += 1"
+        }
+      ],
+      "common_mistakes": [
+        "Using DFS when the interviewer specifically asks for minimum number of unweighted steps.",
+        "Marking visited too late.",
+        "Counting levels incorrectly by incrementing distance per node instead of per layer."
+      ],
+      "leetcode_ladder": [
+        {
+          "order": 1,
+          "leetcode_number": 102,
+          "title": "Binary Tree Level Order Traversal",
+          "difficulty": "Medium",
+          "tests": "Level BFS",
+          "slug": "binary-tree-level-order-traversal",
+          "url": "https://leetcode.com/problems/binary-tree-level-order-traversal/"
+        },
+        {
+          "order": 2,
+          "leetcode_number": 994,
+          "title": "Rotting Oranges",
+          "difficulty": "Medium",
+          "tests": "Multi-source grid BFS",
+          "slug": "rotting-oranges",
+          "url": "https://leetcode.com/problems/rotting-oranges/"
+        },
+        {
+          "order": 3,
+          "leetcode_number": 1091,
+          "title": "Shortest Path in Binary Matrix",
+          "difficulty": "Medium",
+          "tests": "Shortest grid path",
+          "slug": "shortest-path-in-binary-matrix",
+          "url": "https://leetcode.com/problems/shortest-path-in-binary-matrix/"
+        },
+        {
+          "order": 4,
+          "leetcode_number": 127,
+          "title": "Word Ladder",
+          "difficulty": "Hard",
+          "tests": "State-space shortest path",
+          "slug": "word-ladder",
+          "url": "https://leetcode.com/problems/word-ladder/"
+        },
+        {
+          "order": 5,
+          "leetcode_number": 752,
+          "title": "Open the Lock",
+          "difficulty": "Medium",
+          "tests": "Implicit graph BFS",
+          "slug": "open-the-lock",
+          "url": "https://leetcode.com/problems/open-the-lock/"
+        }
+      ],
+      "graduation_requirement": "You can explain why BFS gives a shortest path only for equal/unweighted edge cost, and you mark a state visited at enqueue time to avoid duplicate queue entries."
+    },
+    {
+      "order": 12,
+      "id": "heaps-priority-queues",
+      "title": "Heaps / Priority Queues",
+      "goal": "Use a heap when you repeatedly need the smallest/largest current candidate without fully sorting everything.",
+      "what_to_master": [
+        "Python heapq min-heap operations.",
+        "Simulate max heap by negating numeric priorities.",
+        "Maintain top K with a heap of size K.",
+        "Merge K sorted streams.",
+        "Use a heap for best-first graph algorithms.",
+        "Understand heap O(log n) push/pop and O(1) peek."
+      ],
+      "recognition_signals": [
+        "Top K / Kth largest/smallest.",
+        "Repeatedly extract minimum/maximum.",
+        "Merge multiple sorted lists/arrays.",
+        "Scheduling by earliest finish/priority.",
+        "Streaming median (two heaps).",
+        "Weighted shortest path -> min-priority frontier."
+      ],
+      "templates": [
+        {
+          "name": "Min heap",
+          "note": "heapq stores the smallest element at index 0.",
+          "code": "import heapq\nheap = []\nfor x in nums:\n    heapq.heappush(heap, x)\nsmallest = heapq.heappop(heap)"
+        },
+        {
+          "name": "Top K largest",
+          "note": "Keep only the K largest elements by ejecting the smallest whenever size exceeds K.",
+          "code": "heap = []\nfor x in nums:\n    heapq.heappush(heap, x)\n    if len(heap) > k:\n        heapq.heappop(heap)\nreturn heap"
+        },
+        {
+          "name": "Priority tuples",
+          "note": "Tuples are ordered lexicographically; a tie-breaker avoids comparing unsupported item types.",
+          "code": "heapq.heappush(heap, (priority, tie_breaker, item))\npriority, _, item = heapq.heappop(heap)"
+        }
+      ],
+      "common_mistakes": [
+        "Building a max heap with negation but forgetting to negate when reading the result.",
+        "Using a heap when one final sort is simpler and equally acceptable.",
+        "Putting non-comparable objects after equal priorities in tuples without a tie-breaker."
+      ],
+      "leetcode_ladder": [
+        {
+          "order": 1,
+          "leetcode_number": 1046,
+          "title": "Last Stone Weight",
+          "difficulty": "Easy",
+          "tests": "Max-heap simulation",
+          "slug": "last-stone-weight",
+          "url": "https://leetcode.com/problems/last-stone-weight/"
+        },
+        {
+          "order": 2,
+          "leetcode_number": 215,
+          "title": "Kth Largest Element in an Array",
+          "difficulty": "Medium",
+          "tests": "Size-K heap",
+          "slug": "kth-largest-element-in-an-array",
+          "url": "https://leetcode.com/problems/kth-largest-element-in-an-array/"
+        },
+        {
+          "order": 3,
+          "leetcode_number": 347,
+          "title": "Top K Frequent Elements",
+          "difficulty": "Medium",
+          "tests": "Frequency + heap/buckets",
+          "slug": "top-k-frequent-elements",
+          "url": "https://leetcode.com/problems/top-k-frequent-elements/"
+        },
+        {
+          "order": 4,
+          "leetcode_number": 973,
+          "title": "K Closest Points to Origin",
+          "difficulty": "Medium",
+          "tests": "Top K",
+          "slug": "k-closest-points-to-origin",
+          "url": "https://leetcode.com/problems/k-closest-points-to-origin/"
+        },
+        {
+          "order": 5,
+          "leetcode_number": 23,
+          "title": "Merge k Sorted Lists",
+          "difficulty": "Hard",
+          "tests": "K-way merge",
+          "slug": "merge-k-sorted-lists",
+          "url": "https://leetcode.com/problems/merge-k-sorted-lists/"
+        },
+        {
+          "order": 6,
+          "leetcode_number": 295,
+          "title": "Find Median from Data Stream",
+          "difficulty": "Hard",
+          "tests": "Two heaps",
+          "slug": "find-median-from-data-stream",
+          "url": "https://leetcode.com/problems/find-median-from-data-stream/"
+        },
+        {
+          "order": 7,
+          "leetcode_number": 621,
+          "title": "Task Scheduler",
+          "difficulty": "Medium",
+          "tests": "Heap + greedy scheduling",
+          "slug": "task-scheduler",
+          "url": "https://leetcode.com/problems/task-scheduler/"
+        }
+      ],
+      "graduation_requirement": "You can decide whether the heap should retain K largest or K smallest elements and explain why the heap root is the element that should be discarded or selected next."
+    },
+    {
+      "order": 13,
+      "id": "graphs",
+      "title": "Graphs",
+      "goal": "Represent arbitrary relationships and combine traversal, topological ordering, shortest path, and connectivity techniques.",
+      "what_to_master": [
+        "Build adjacency lists from edge lists.",
+        "Directed vs undirected edges.",
+        "DFS/BFS traversal and components.",
+        "Topological sort with indegrees/Kahn or DFS postorder.",
+        "Cycle detection.",
+        "Dijkstra for non-negative weighted shortest paths.",
+        "Understand when Union Find is a better fit than traversal."
+      ],
+      "recognition_signals": [
+        "Entities connected by relationships, routes, dependencies, friendships, prerequisites.",
+        "Course/dependency ordering -> topological sort.",
+        "Shortest weighted path with non-negative weights -> Dijkstra.",
+        "Connectivity under repeated unions -> Union Find.",
+        "Grid problems are graphs whose vertices are cells."
+      ],
+      "templates": [
+        {
+          "name": "Adjacency list",
+          "note": "Representation comes first; many mistakes are actually incorrect edge direction.",
+          "code": "from collections import defaultdict\ngraph = defaultdict(list)\nfor u, v in edges:\n    graph[u].append(v)\n    graph[v].append(u)  # omit for directed graph"
+        },
+        {
+          "name": "Kahn topological sort",
+          "note": "A directed cycle prevents all vertices from reaching indegree zero.",
+          "code": "from collections import deque\nindegree = [0] * n\ngraph = [[] for _ in range(n)]\nfor u, v in edges:\n    graph[u].append(v)\n    indegree[v] += 1\nq = deque(i for i in range(n) if indegree[i] == 0)\norder = []\nwhile q:\n    u = q.popleft(); order.append(u)\n    for v in graph[u]:\n        indegree[v] -= 1\n        if indegree[v] == 0:\n            q.append(v)\nreturn order if len(order) == n else []"
+        },
+        {
+          "name": "Dijkstra",
+          "note": "Heap entries can become stale; skip them if a better distance was found later.",
+          "code": "import heapq\ndist = {start: 0}\nheap = [(0, start)]\nwhile heap:\n    d, u = heapq.heappop(heap)\n    if d != dist[u]:\n        continue\n    for v, w in graph[u]:\n        nd = d + w\n        if nd < dist.get(v, float('inf')):\n            dist[v] = nd\n            heapq.heappush(heap, (nd, v))"
+        }
+      ],
+      "common_mistakes": [
+        "Adding both edge directions to a directed graph.",
+        "Using ordinary BFS for arbitrary weighted shortest paths.",
+        "Using Dijkstra with negative edge weights.",
+        "For topological sort, confusing \"u depends on v\" with which direction the edge should point."
+      ],
+      "leetcode_ladder": [
+        {
+          "order": 1,
+          "leetcode_number": 200,
+          "title": "Number of Islands",
+          "difficulty": "Medium",
+          "tests": "Graph-as-grid",
+          "slug": "number-of-islands",
+          "url": "https://leetcode.com/problems/number-of-islands/"
+        },
+        {
+          "order": 2,
+          "leetcode_number": 547,
+          "title": "Number of Provinces",
+          "difficulty": "Medium",
+          "tests": "Components",
+          "slug": "number-of-provinces",
+          "url": "https://leetcode.com/problems/number-of-provinces/"
+        },
+        {
+          "order": 3,
+          "leetcode_number": 207,
+          "title": "Course Schedule",
+          "difficulty": "Medium",
+          "tests": "Cycle/topological logic",
+          "slug": "course-schedule",
+          "url": "https://leetcode.com/problems/course-schedule/"
+        },
+        {
+          "order": 4,
+          "leetcode_number": 210,
+          "title": "Course Schedule II",
+          "difficulty": "Medium",
+          "tests": "Return topological order",
+          "slug": "course-schedule-ii",
+          "url": "https://leetcode.com/problems/course-schedule-ii/"
+        },
+        {
+          "order": 5,
+          "leetcode_number": 133,
+          "title": "Clone Graph",
+          "difficulty": "Medium",
+          "tests": "Traversal + map",
+          "slug": "clone-graph",
+          "url": "https://leetcode.com/problems/clone-graph/"
+        },
+        {
+          "order": 6,
+          "leetcode_number": 743,
+          "title": "Network Delay Time",
+          "difficulty": "Medium",
+          "tests": "Dijkstra",
+          "slug": "network-delay-time",
+          "url": "https://leetcode.com/problems/network-delay-time/"
+        },
+        {
+          "order": 7,
+          "leetcode_number": 1584,
+          "title": "Min Cost to Connect All Points",
+          "difficulty": "Medium",
+          "tests": "Minimum spanning tree",
+          "slug": "min-cost-to-connect-all-points",
+          "url": "https://leetcode.com/problems/min-cost-to-connect-all-points/"
+        },
+        {
+          "order": 8,
+          "leetcode_number": 787,
+          "title": "Cheapest Flights Within K Stops",
+          "difficulty": "Medium",
+          "tests": "Constrained shortest path",
+          "slug": "cheapest-flights-within-k-stops",
+          "url": "https://leetcode.com/problems/cheapest-flights-within-k-stops/"
+        }
+      ],
+      "graduation_requirement": "Given a graph problem, you first classify it: connectivity, traversal, ordering, unweighted shortest path, weighted shortest path, or minimum spanning/connectivity."
+    },
+    {
+      "order": 14,
+      "id": "union-find",
+      "title": "Union Find (Disjoint Set Union)",
+      "goal": "Maintain dynamic connected components efficiently using parent links, path compression, and union by size/rank.",
+      "what_to_master": [
+        "Initialize parent array.",
+        "Find representative/root.",
+        "Path compression.",
+        "Union by size/rank.",
+        "Track number of connected components.",
+        "Detect redundant edges/cycles in undirected connectivity problems."
+      ],
+      "recognition_signals": [
+        "Many \"connect A and B\" operations.",
+        "Repeated \"are these connected?\" queries.",
+        "Need number of components after unions.",
+        "Undirected cycle/redundant edge.",
+        "Accounts or identities need merging by shared key.",
+        "Minimum spanning tree with Kruskal."
+      ],
+      "templates": [
+        {
+          "name": "DSU class",
+          "note": "With path compression and union by size/rank, operations are effectively near-constant amortized time.",
+          "code": "class DSU:\n    def __init__(self, n):\n        self.parent = list(range(n))\n        self.size = [1] * n\n\n    def find(self, x):\n        while x != self.parent[x]:\n            self.parent[x] = self.parent[self.parent[x]]\n            x = self.parent[x]\n        return x\n\n    def union(self, a, b):\n        ra, rb = self.find(a), self.find(b)\n        if ra == rb:\n            return False\n        if self.size[ra] < self.size[rb]:\n            ra, rb = rb, ra\n        self.parent[rb] = ra\n        self.size[ra] += self.size[rb]\n        return True"
+        }
+      ],
+      "common_mistakes": [
+        "Unioning raw nodes without first finding their roots.",
+        "Forgetting path compression or rank/size, making pathological trees possible.",
+        "Using DSU for directed reachability/order problems where it does not preserve direction."
+      ],
+      "leetcode_ladder": [
+        {
+          "order": 1,
+          "leetcode_number": 547,
+          "title": "Number of Provinces",
+          "difficulty": "Medium",
+          "tests": "Basic DSU components",
+          "slug": "number-of-provinces",
+          "url": "https://leetcode.com/problems/number-of-provinces/"
+        },
+        {
+          "order": 2,
+          "leetcode_number": 684,
+          "title": "Redundant Connection",
+          "difficulty": "Medium",
+          "tests": "Cycle via failed union",
+          "slug": "redundant-connection",
+          "url": "https://leetcode.com/problems/redundant-connection/"
+        },
+        {
+          "order": 3,
+          "leetcode_number": 721,
+          "title": "Accounts Merge",
+          "difficulty": "Medium",
+          "tests": "Union identities",
+          "slug": "accounts-merge",
+          "url": "https://leetcode.com/problems/accounts-merge/"
+        },
+        {
+          "order": 4,
+          "leetcode_number": 1319,
+          "title": "Number of Operations to Make Network Connected",
+          "difficulty": "Medium",
+          "tests": "Components + edge sufficiency",
+          "slug": "number-of-operations-to-make-network-connected",
+          "url": "https://leetcode.com/problems/number-of-operations-to-make-network-connected/"
+        },
+        {
+          "order": 5,
+          "leetcode_number": 1584,
+          "title": "Min Cost to Connect All Points",
+          "difficulty": "Medium",
+          "tests": "Kruskal MST option",
+          "slug": "min-cost-to-connect-all-points",
+          "url": "https://leetcode.com/problems/min-cost-to-connect-all-points/"
+        }
+      ],
+      "graduation_requirement": "You can implement find() with compression and union() with size/rank without reference material, and you know that union returning false means the vertices were already connected."
+    },
+    {
+      "order": 15,
+      "id": "backtracking",
+      "title": "Backtracking",
+      "goal": "Explore a decision tree by choosing, recursing, and undoing; generate combinations/permutations or search constrained possibilities.",
+      "what_to_master": [
+        "Define the decision state.",
+        "Choose -> recurse -> undo.",
+        "Identify a base case that records a complete answer.",
+        "Avoid duplicate work through sorting/skipping or used sets.",
+        "Prune branches that cannot produce valid results.",
+        "Distinguish subsets, combinations, permutations, and partitioning."
+      ],
+      "recognition_signals": [
+        "Generate all subsets/permutations/combinations.",
+        "Need all possible valid arrangements.",
+        "Constraint puzzle such as N-Queens or Sudoku.",
+        "Search choices where a choice must later be undone.",
+        "Input size is small enough for exponential exploration."
+      ],
+      "templates": [
+        {
+          "name": "Generic backtracking",
+          "note": "The defining feature is restoration of state after exploring a branch.",
+          "code": "result = []\npath = []\n\ndef backtrack(state):\n    if complete(state):\n        result.append(path.copy())\n        return\n\n    for choice in choices(state):\n        if not valid(choice, state):\n            continue\n        path.append(choice)\n        apply(choice, state)\n        backtrack(state)\n        undo(choice, state)\n        path.pop()"
+        },
+        {
+          "name": "Subsets",
+          "note": "Every partial path is itself a valid subset.",
+          "code": "def backtrack(start):\n    result.append(path.copy())\n    for i in range(start, len(nums)):\n        path.append(nums[i])\n        backtrack(i + 1)\n        path.pop()"
+        },
+        {
+          "name": "Permutations",
+          "note": "Each position can choose any not-yet-used element.",
+          "code": "def backtrack():\n    if len(path) == len(nums):\n        result.append(path.copy()); return\n    for i in range(len(nums)):\n        if used[i]: continue\n        used[i] = True; path.append(nums[i])\n        backtrack()\n        path.pop(); used[i] = False"
+        }
+      ],
+      "common_mistakes": [
+        "Appending path instead of path.copy(), causing all saved answers to reference the same mutable list.",
+        "Using a global visited set when cells/values should only be blocked within the current path.",
+        "Failing to sort/skip duplicates for duplicate-sensitive combination problems."
+      ],
+      "leetcode_ladder": [
+        {
+          "order": 1,
+          "leetcode_number": 78,
+          "title": "Subsets",
+          "difficulty": "Medium",
+          "tests": "Basic choose/undo",
+          "slug": "subsets",
+          "url": "https://leetcode.com/problems/subsets/"
+        },
+        {
+          "order": 2,
+          "leetcode_number": 77,
+          "title": "Combinations",
+          "difficulty": "Medium",
+          "tests": "Start-index search",
+          "slug": "combinations",
+          "url": "https://leetcode.com/problems/combinations/"
+        },
+        {
+          "order": 3,
+          "leetcode_number": 46,
+          "title": "Permutations",
+          "difficulty": "Medium",
+          "tests": "Used state",
+          "slug": "permutations",
+          "url": "https://leetcode.com/problems/permutations/"
+        },
+        {
+          "order": 4,
+          "leetcode_number": 39,
+          "title": "Combination Sum",
+          "difficulty": "Medium",
+          "tests": "Reuse choices + pruning",
+          "slug": "combination-sum",
+          "url": "https://leetcode.com/problems/combination-sum/"
+        },
+        {
+          "order": 5,
+          "leetcode_number": 40,
+          "title": "Combination Sum II",
+          "difficulty": "Medium",
+          "tests": "Duplicate handling",
+          "slug": "combination-sum-ii",
+          "url": "https://leetcode.com/problems/combination-sum-ii/"
+        },
+        {
+          "order": 6,
+          "leetcode_number": 79,
+          "title": "Word Search",
+          "difficulty": "Medium",
+          "tests": "Grid backtracking",
+          "slug": "word-search",
+          "url": "https://leetcode.com/problems/word-search/"
+        },
+        {
+          "order": 7,
+          "leetcode_number": 131,
+          "title": "Palindrome Partitioning",
+          "difficulty": "Medium",
+          "tests": "Partition choices",
+          "slug": "palindrome-partitioning",
+          "url": "https://leetcode.com/problems/palindrome-partitioning/"
+        },
+        {
+          "order": 8,
+          "leetcode_number": 51,
+          "title": "N-Queens",
+          "difficulty": "Hard",
+          "tests": "Constraint pruning",
+          "slug": "n-queens",
+          "url": "https://leetcode.com/problems/n-queens/"
+        }
+      ],
+      "graduation_requirement": "You can draw the decision tree for subsets, combinations, and permutations and explain exactly what state must be undone after each recursive call."
+    },
+    {
+      "order": 16,
+      "id": "tries",
+      "title": "Tries",
+      "goal": "Store strings by shared prefixes so prefix lookup and character-by-character search become natural operations.",
+      "what_to_master": [
+        "Trie node children mapping.",
+        "End-of-word marker.",
+        "Insert, exact search, prefix search.",
+        "DFS from trie nodes for wildcard or board search.",
+        "Understand memory trade-off vs hash sets."
+      ],
+      "recognition_signals": [
+        "Many words and frequent prefix queries.",
+        "Autocomplete/prefix dictionary.",
+        "Need to search many words simultaneously through a board/string.",
+        "Wildcard character matching over a dictionary."
+      ],
+      "templates": [
+        {
+          "name": "Trie implementation",
+          "note": "Every edge corresponds to one character; nodes represent prefixes.",
+          "code": "class TrieNode:\n    def __init__(self):\n        self.children = {}\n        self.end = False\n\nclass Trie:\n    def __init__(self):\n        self.root = TrieNode()\n\n    def insert(self, word):\n        node = self.root\n        for ch in word:\n            node = node.children.setdefault(ch, TrieNode())\n        node.end = True\n\n    def search(self, word):\n        node = self.root\n        for ch in word:\n            if ch not in node.children:\n                return False\n            node = node.children[ch]\n        return node.end\n\n    def startsWith(self, prefix):\n        node = self.root\n        for ch in prefix:\n            if ch not in node.children:\n                return False\n            node = node.children[ch]\n        return True"
+        }
+      ],
+      "common_mistakes": [
+        "Forgetting the end-of-word marker, making \"app\" indistinguishable from prefix of \"apple.\"",
+        "Assuming trie is always more memory efficient than a set; dictionary-based nodes can be expensive."
+      ],
+      "leetcode_ladder": [
+        {
+          "order": 1,
+          "leetcode_number": 208,
+          "title": "Implement Trie (Prefix Tree)",
+          "difficulty": "Medium",
+          "tests": "Core implementation",
+          "slug": "implement-trie-prefix-tree",
+          "url": "https://leetcode.com/problems/implement-trie-prefix-tree/"
+        },
+        {
+          "order": 2,
+          "leetcode_number": 211,
+          "title": "Design Add and Search Words Data Structure",
+          "difficulty": "Medium",
+          "tests": "Trie + DFS wildcard",
+          "slug": "design-add-and-search-words-data-structure",
+          "url": "https://leetcode.com/problems/design-add-and-search-words-data-structure/"
+        },
+        {
+          "order": 3,
+          "leetcode_number": 648,
+          "title": "Replace Words",
+          "difficulty": "Medium",
+          "tests": "Shortest prefix",
+          "slug": "replace-words",
+          "url": "https://leetcode.com/problems/replace-words/"
+        },
+        {
+          "order": 4,
+          "leetcode_number": 212,
+          "title": "Word Search II",
+          "difficulty": "Hard",
+          "tests": "Trie + grid backtracking",
+          "slug": "word-search-ii",
+          "url": "https://leetcode.com/problems/word-search-ii/"
+        }
+      ],
+      "graduation_requirement": "You can implement insert/search/startsWith and explain why a trie helps when many queries share prefixes."
+    },
+    {
+      "order": 17,
+      "id": "greedy",
+      "title": "Greedy Algorithms",
+      "goal": "Make a locally optimal choice only when you can justify that it never blocks a globally optimal solution.",
+      "what_to_master": [
+        "Identify a safe local choice.",
+        "Sort by the property that exposes the greedy invariant.",
+        "Use exchange arguments conceptually: any optimal solution can be transformed to include your greedy choice.",
+        "Track only necessary state instead of all possibilities.",
+        "Know when a greedy-looking approach fails and DP is needed."
+      ],
+      "recognition_signals": [
+        "Minimize number of intervals/resources.",
+        "Scheduling and non-overlap.",
+        "Choose farthest/earliest/cheapest next action with provable safety.",
+        "Need global optimum but local decisions have a dominance property.",
+        "If choices have long-term interacting consequences, be suspicious and consider DP."
+      ],
+      "templates": [
+        {
+          "name": "Interval greedy",
+          "note": "Choosing the earliest finishing compatible interval leaves the most room for future choices.",
+          "code": "intervals.sort(key=lambda x: x[1])\ncount = 0\nend = float('-inf')\nfor start, finish in intervals:\n    if start >= end:\n        count += 1\n        end = finish"
+        },
+        {
+          "name": "Reachability greedy",
+          "note": "Maintain the strongest reachable frontier; dominated paths do not need separate state.",
+          "code": "farthest = 0\nfor i, jump in enumerate(nums):\n    if i > farthest:\n        return False\n    farthest = max(farthest, i + jump)\nreturn True"
+        }
+      ],
+      "common_mistakes": [
+        "Calling an algorithm greedy merely because it uses one pass.",
+        "Using greedy when current decisions alter future options in a way that requires remembering multiple states.",
+        "Sorting by the wrong interval endpoint/property."
+      ],
+      "leetcode_ladder": [
+        {
+          "order": 1,
+          "leetcode_number": 121,
+          "title": "Best Time to Buy and Sell Stock",
+          "difficulty": "Easy",
+          "tests": "Best prior state",
+          "slug": "best-time-to-buy-and-sell-stock",
+          "url": "https://leetcode.com/problems/best-time-to-buy-and-sell-stock/"
+        },
+        {
+          "order": 2,
+          "leetcode_number": 55,
+          "title": "Jump Game",
+          "difficulty": "Medium",
+          "tests": "Reachability frontier",
+          "slug": "jump-game",
+          "url": "https://leetcode.com/problems/jump-game/"
+        },
+        {
+          "order": 3,
+          "leetcode_number": 45,
+          "title": "Jump Game II",
+          "difficulty": "Medium",
+          "tests": "Layer-like greedy",
+          "slug": "jump-game-ii",
+          "url": "https://leetcode.com/problems/jump-game-ii/"
+        },
+        {
+          "order": 4,
+          "leetcode_number": 435,
+          "title": "Non-overlapping Intervals",
+          "difficulty": "Medium",
+          "tests": "Earliest finish",
+          "slug": "non-overlapping-intervals",
+          "url": "https://leetcode.com/problems/non-overlapping-intervals/"
+        },
+        {
+          "order": 5,
+          "leetcode_number": 452,
+          "title": "Minimum Number of Arrows to Burst Balloons",
+          "difficulty": "Medium",
+          "tests": "Interval overlap",
+          "slug": "minimum-number-of-arrows-to-burst-balloons",
+          "url": "https://leetcode.com/problems/minimum-number-of-arrows-to-burst-balloons/"
+        },
+        {
+          "order": 6,
+          "leetcode_number": 134,
+          "title": "Gas Station",
+          "difficulty": "Medium",
+          "tests": "Greedy restart invariant",
+          "slug": "gas-station",
+          "url": "https://leetcode.com/problems/gas-station/"
+        },
+        {
+          "order": 7,
+          "leetcode_number": 621,
+          "title": "Task Scheduler",
+          "difficulty": "Medium",
+          "tests": "Frequency/heap greedy",
+          "slug": "task-scheduler",
+          "url": "https://leetcode.com/problems/task-scheduler/"
+        }
+      ],
+      "graduation_requirement": "For every greedy solution, you can explain why a different local choice cannot lead to a strictly better future outcome. \"It seems optimal\" is not enough."
+    },
+    {
+      "order": 18,
+      "id": "divide-and-conquer",
+      "title": "Divide & Conquer",
+      "goal": "Split a problem into smaller independent instances, solve them recursively, and combine their results efficiently.",
+      "what_to_master": [
+        "Base case, divide, conquer, combine.",
+        "Merge sort on arrays and linked lists.",
+        "Binary-search family as divide-and-conquer intuition.",
+        "Tree recursion as structural decomposition.",
+        "Know when subproblems overlap: if heavily overlapping, memoization/DP may be better."
+      ],
+      "recognition_signals": [
+        "Problem naturally splits into independent halves.",
+        "Need sort/merge behavior.",
+        "Each recursive half can be solved without sharing mutable state.",
+        "Combining solutions is cheaper than solving the whole problem directly."
+      ],
+      "templates": [
+        {
+          "name": "Merge sort",
+          "note": "The combine step determines the overall efficiency; merge is linear.",
+          "code": "def merge_sort(nums):\n    if len(nums) <= 1:\n        return nums\n    mid = len(nums) // 2\n    left = merge_sort(nums[:mid])\n    right = merge_sort(nums[mid:])\n    return merge(left, right)"
+        },
+        {
+          "name": "Generic divide/conquer",
+          "note": "Use when the subproblems are mostly independent rather than repeatedly overlapping.",
+          "code": "def solve(problem):\n    if small(problem):\n        return base(problem)\n    left, right = divide(problem)\n    a = solve(left)\n    b = solve(right)\n    return combine(a, b)"
+        }
+      ],
+      "common_mistakes": [
+        "Creating costly slices in Python without considering space/time impact.",
+        "Recursing without a shrinking problem size/base case.",
+        "Labeling DP as divide-and-conquer even when the same subproblems are recomputed many times."
+      ],
+      "leetcode_ladder": [
+        {
+          "order": 1,
+          "leetcode_number": 108,
+          "title": "Convert Sorted Array to Binary Search Tree",
+          "difficulty": "Easy",
+          "tests": "Balanced split",
+          "slug": "convert-sorted-array-to-binary-search-tree",
+          "url": "https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/"
+        },
+        {
+          "order": 2,
+          "leetcode_number": 148,
+          "title": "Sort List",
+          "difficulty": "Medium",
+          "tests": "Linked-list merge sort",
+          "slug": "sort-list",
+          "url": "https://leetcode.com/problems/sort-list/"
+        },
+        {
+          "order": 3,
+          "leetcode_number": 215,
+          "title": "Kth Largest Element in an Array",
+          "difficulty": "Medium",
+          "tests": "Quickselect alternative",
+          "slug": "kth-largest-element-in-an-array",
+          "url": "https://leetcode.com/problems/kth-largest-element-in-an-array/"
+        },
+        {
+          "order": 4,
+          "leetcode_number": 23,
+          "title": "Merge k Sorted Lists",
+          "difficulty": "Hard",
+          "tests": "Pairwise divide-and-conquer merge",
+          "slug": "merge-k-sorted-lists",
+          "url": "https://leetcode.com/problems/merge-k-sorted-lists/"
+        },
+        {
+          "order": 5,
+          "leetcode_number": 241,
+          "title": "Different Ways to Add Parentheses",
+          "difficulty": "Medium",
+          "tests": "Split expression at operators",
+          "slug": "different-ways-to-add-parentheses",
+          "url": "https://leetcode.com/problems/different-ways-to-add-parentheses/"
+        },
+        {
+          "order": 6,
+          "leetcode_number": 315,
+          "title": "Count of Smaller Numbers After Self",
+          "difficulty": "Hard",
+          "tests": "Merge-sort counting",
+          "slug": "count-of-smaller-numbers-after-self",
+          "url": "https://leetcode.com/problems/count-of-smaller-numbers-after-self/"
+        }
+      ],
+      "graduation_requirement": "You can identify the divide step, the exact recursive subproblem, and the complexity of the combine step. You also know to ask whether overlapping subproblems suggest DP instead."
+    },
+    {
+      "order": 19,
+      "id": "dynamic-programming",
+      "title": "Dynamic Programming",
+      "goal": "Turn overlapping recursive choices into reusable states; learn to design state, transition, base cases, evaluation order, and space optimization.",
+      "what_to_master": [
+        "Recursion tree and overlapping subproblems.",
+        "Memoization (top-down).",
+        "Tabulation (bottom-up).",
+        "Define state in a complete sentence.",
+        "Write transition from smaller states.",
+        "Choose base cases.",
+        "1D DP, 2D/grid DP, knapsack/subset DP, sequence DP, interval DP.",
+        "Space optimization when only previous rows/states are needed.",
+        "Recognize DP vs greedy vs backtracking."
+      ],
+      "recognition_signals": [
+        "Count number of ways.",
+        "Maximum/minimum over many choices with overlapping suffix/prefix states.",
+        "\"At each position choose take/skip.\"",
+        "Grid paths/cost.",
+        "Sequence alignment, subsequence, edit operations.",
+        "Capacity/target subset problems.",
+        "Brute-force recursion repeats the same arguments."
+      ],
+      "templates": [
+        {
+          "name": "Top-down memoization",
+          "note": "Start from a natural recursion; cache answers by the complete state.",
+          "code": "from functools import lru_cache\n\n@lru_cache(None)\ndef dp(i):\n    if i >= n:\n        return base\n    return best(\n        option1(dp(i + 1)),\n        option2(dp(i + 2))\n    )"
+        },
+        {
+          "name": "Bottom-up 1D",
+          "note": "Compute states only after every dependency is already known.",
+          "code": "dp = [0] * (n + 1)\ndp[0] = base\nfor i in range(1, n + 1):\n    dp[i] = transition(dp, i)\nreturn dp[n]"
+        },
+        {
+          "name": "Two-row sequence DP",
+          "note": "Typical for LCS-style DP. Allocate a fresh current row or correctly reset reused state.",
+          "code": "prev = [0] * (n + 1)\nfor i in range(1, m + 1):\n    cur = [0] * (n + 1)\n    for j in range(1, n + 1):\n        if a[i - 1] == b[j - 1]:\n            cur[j] = prev[j - 1] + 1\n        else:\n            cur[j] = max(prev[j], cur[j - 1])\n    prev = cur\nreturn prev[n]"
+        },
+        {
+          "name": "0/1 knapsack direction",
+          "note": "Iterating backward ensures each item is used at most once.",
+          "code": "dp = [False] * (target + 1)\ndp[0] = True\nfor x in nums:\n    for s in range(target, x - 1, -1):\n        dp[s] = dp[s] or dp[s - x]"
+        }
+      ],
+      "common_mistakes": [
+        "Defining a state that does not contain enough information to determine future decisions.",
+        "Writing a recurrence before stating what dp means.",
+        "Using prev = cur with a reused mutable row and accidentally reading values from the current iteration.",
+        "Using forward iteration for 0/1 knapsack and unintentionally reusing an item multiple times."
+      ],
+      "leetcode_ladder": [
+        {
+          "order": 1,
+          "leetcode_number": 70,
+          "title": "Climbing Stairs",
+          "difficulty": "Easy",
+          "tests": "1D recurrence",
+          "slug": "climbing-stairs",
+          "url": "https://leetcode.com/problems/climbing-stairs/"
+        },
+        {
+          "order": 2,
+          "leetcode_number": 198,
+          "title": "House Robber",
+          "difficulty": "Medium",
+          "tests": "Take/skip",
+          "slug": "house-robber",
+          "url": "https://leetcode.com/problems/house-robber/"
+        },
+        {
+          "order": 3,
+          "leetcode_number": 746,
+          "title": "Min Cost Climbing Stairs",
+          "difficulty": "Easy",
+          "tests": "State transition",
+          "slug": "min-cost-climbing-stairs",
+          "url": "https://leetcode.com/problems/min-cost-climbing-stairs/"
+        },
+        {
+          "order": 4,
+          "leetcode_number": 62,
+          "title": "Unique Paths",
+          "difficulty": "Medium",
+          "tests": "Grid DP",
+          "slug": "unique-paths",
+          "url": "https://leetcode.com/problems/unique-paths/"
+        },
+        {
+          "order": 5,
+          "leetcode_number": 64,
+          "title": "Minimum Path Sum",
+          "difficulty": "Medium",
+          "tests": "Grid min cost",
+          "slug": "minimum-path-sum",
+          "url": "https://leetcode.com/problems/minimum-path-sum/"
+        },
+        {
+          "order": 6,
+          "leetcode_number": 322,
+          "title": "Coin Change",
+          "difficulty": "Medium",
+          "tests": "Unbounded choice",
+          "slug": "coin-change",
+          "url": "https://leetcode.com/problems/coin-change/"
+        },
+        {
+          "order": 7,
+          "leetcode_number": 416,
+          "title": "Partition Equal Subset Sum",
+          "difficulty": "Medium",
+          "tests": "0/1 subset DP",
+          "slug": "partition-equal-subset-sum",
+          "url": "https://leetcode.com/problems/partition-equal-subset-sum/"
+        },
+        {
+          "order": 8,
+          "leetcode_number": 300,
+          "title": "Longest Increasing Subsequence",
+          "difficulty": "Medium",
+          "tests": "Sequence DP / binary-search optimization",
+          "slug": "longest-increasing-subsequence",
+          "url": "https://leetcode.com/problems/longest-increasing-subsequence/"
+        },
+        {
+          "order": 9,
+          "leetcode_number": 1143,
+          "title": "Longest Common Subsequence",
+          "difficulty": "Medium",
+          "tests": "2D sequence DP",
+          "slug": "longest-common-subsequence",
+          "url": "https://leetcode.com/problems/longest-common-subsequence/"
+        },
+        {
+          "order": 10,
+          "leetcode_number": 72,
+          "title": "Edit Distance",
+          "difficulty": "Medium",
+          "tests": "2D transformations",
+          "slug": "edit-distance",
+          "url": "https://leetcode.com/problems/edit-distance/"
+        },
+        {
+          "order": 11,
+          "leetcode_number": 139,
+          "title": "Word Break",
+          "difficulty": "Medium",
+          "tests": "Prefix segmentation",
+          "slug": "word-break",
+          "url": "https://leetcode.com/problems/word-break/"
+        },
+        {
+          "order": 12,
+          "leetcode_number": 312,
+          "title": "Burst Balloons",
+          "difficulty": "Hard",
+          "tests": "Interval DP",
+          "slug": "burst-balloons",
+          "url": "https://leetcode.com/problems/burst-balloons/"
+        }
+      ],
+      "combination_skills": [
+        "Backtracking explores the full decision tree; memoized DP collapses repeated states.",
+        "Greedy keeps one dominant state only when a proof shows alternatives are unnecessary.",
+        "Binary search can optimize some DP-like sequence problems such as LIS, but it changes the meaning of the maintained array."
+      ],
+      "graduation_requirement": "Before touching code you can answer five questions: (1) What does dp(state) mean? (2) What choices exist? (3) What smaller states are needed? (4) What are the base cases? (5) In what order can states be computed?"
+    }
+  ],
+  "decision_tree": [
+    {
+      "question": "Need fast lookup, duplicates, counts, grouping?",
+      "technique": "Hash map / set"
+    },
+    {
+      "question": "Sorted input and pair/symmetric relationship?",
+      "technique": "Two pointers"
+    },
+    {
+      "question": "Contiguous longest/shortest range?",
+      "technique": "Sliding window or prefix sum"
+    },
+    {
+      "question": "Repeated range sums?",
+      "technique": "Prefix sum"
+    },
+    {
+      "question": "Nested structure / next greater / unresolved previous items?",
+      "technique": "Stack / monotonic stack"
+    },
+    {
+      "question": "FIFO / level-by-level / unweighted shortest path?",
+      "technique": "Queue + BFS"
+    },
+    {
+      "question": "Middle/cycle/Nth from end in linked list?",
+      "technique": "Fast/slow or fixed-gap pointers"
+    },
+    {
+      "question": "Sorted input or monotonic predicate?",
+      "technique": "Binary search"
+    },
+    {
+      "question": "Subtree or hierarchical aggregation?",
+      "technique": "Tree DFS"
+    },
+    {
+      "question": "Connected region / component / exhaustive traversal?",
+      "technique": "DFS/BFS"
+    },
+    {
+      "question": "Top K / repeated min-max / prioritized frontier?",
+      "technique": "Heap"
+    },
+    {
+      "question": "Dependency ordering?",
+      "technique": "Topological sort"
+    },
+    {
+      "question": "Non-negative weighted shortest path?",
+      "technique": "Dijkstra + min heap"
+    },
+    {
+      "question": "Repeated connectivity unions?",
+      "technique": "Union Find"
+    },
+    {
+      "question": "All combinations/permutations/arrangements?",
+      "technique": "Backtracking"
+    },
+    {
+      "question": "Prefix dictionary/string search?",
+      "technique": "Trie"
+    },
+    {
+      "question": "Safe locally optimal choice with proof?",
+      "technique": "Greedy"
+    },
+    {
+      "question": "Independent halves + combine?",
+      "technique": "Divide and conquer"
+    },
+    {
+      "question": "Overlapping optimal/counting subproblems?",
+      "technique": "Dynamic programming"
+    }
+  ],
+  "complexity_cheatsheet": [
+    {
+      "operation": "Array index",
+      "time": "O(1)",
+      "space": "O(1)"
+    },
+    {
+      "operation": "Array search",
+      "time": "O(n)",
+      "space": "O(1)"
+    },
+    {
+      "operation": "Hash map/set lookup",
+      "time": "Expected O(1)",
+      "space": "O(n) structure"
+    },
+    {
+      "operation": "Stack push/pop",
+      "time": "O(1)",
+      "space": "O(n)"
+    },
+    {
+      "operation": "Deque append/popleft",
+      "time": "O(1)",
+      "space": "O(n)"
+    },
+    {
+      "operation": "Binary search",
+      "time": "O(log n)",
+      "space": "O(1)"
+    },
+    {
+      "operation": "Heap push/pop",
+      "time": "O(log n)",
+      "space": "O(n)"
+    },
+    {
+      "operation": "Heap peek",
+      "time": "O(1)",
+      "space": "-"
+    },
+    {
+      "operation": "Tree/graph traversal",
+      "time": "O(V+E)",
+      "space": "O(V)"
+    },
+    {
+      "operation": "Sorting",
+      "time": "O(n log n)",
+      "space": "depends"
+    },
+    {
+      "operation": "DSU find/union",
+      "time": "Near O(1) amortized",
+      "space": "O(n)"
+    },
+    {
+      "operation": "Trie operation",
+      "time": "O(L)",
+      "space": "O(total chars)"
+    },
+    {
+      "operation": "Backtracking",
+      "time": "Usually exponential",
+      "space": "recursion/path"
+    },
+    {
+      "operation": "DP",
+      "time": "states x transition cost",
+      "space": "number of stored states"
+    }
+  ],
+  "interview_workflow": {
+    "steps": [
+      "Restate the input, output, constraints, and one example in your own words.",
+      "Ask whether order, duplicates, mutation, and extra space matter if the prompt is ambiguous.",
+      "State a brute-force solution and its complexity. This gives you a correctness baseline.",
+      "Locate the bottleneck: repeated lookup, repeated range work, repeated state, or exhaustive search.",
+      "Match the bottleneck to a pattern from the decision tree.",
+      "State your invariant or DP state before coding.",
+      "Code the smallest reusable operations first.",
+      "Trace the provided example plus an edge case: empty/singleton, duplicates, boundary value, cycle, disconnected component, etc.",
+      "State time and space complexity and identify any Python-specific cost such as slicing or recursion depth."
+    ],
+    "key_habit": "Do not say \"I think this is sliding window\" and immediately code. Say what the window represents and why advancing/shrinking preserves correctness. The same rule applies to every pattern."
+  },
+  "weekly_curriculum": [
+    {
+      "week": 1,
+      "focus": "Arrays + hash maps",
+      "targets": "Traversal, prefix sum, Counter/dict/set, Two Sum, anagrams, subarray prefix states",
+      "problems": "10-14"
+    },
+    {
+      "week": 2,
+      "focus": "Two pointers + sliding window",
+      "targets": "Pair movement invariants, read/write pointers, fixed and variable windows",
+      "problems": "10-14"
+    },
+    {
+      "week": 3,
+      "focus": "Stacks + queues",
+      "targets": "Parentheses, monotonic stacks, deque, BFS queue basics",
+      "problems": "8-12"
+    },
+    {
+      "week": 4,
+      "focus": "Linked lists",
+      "targets": "Dummy node, reversal, fast/slow, gap pointers, merging",
+      "problems": "10-12"
+    },
+    {
+      "week": 5,
+      "focus": "Binary search",
+      "targets": "Exact, boundaries, rotated search, answer-space search",
+      "problems": "10-12"
+    },
+    {
+      "week": 6,
+      "focus": "Trees",
+      "targets": "Recursive return values, BST, level order, LCA, diameter",
+      "problems": "10-12"
+    },
+    {
+      "week": 7,
+      "focus": "DFS + BFS",
+      "targets": "Grid/graph traversal, components, multi-source, shortest unweighted path",
+      "problems": "10-12"
+    },
+    {
+      "week": 8,
+      "focus": "Graphs + Union Find",
+      "targets": "Topological sort, Dijkstra, connectivity, DSU",
+      "problems": "10-12"
+    },
+    {
+      "week": 9,
+      "focus": "Heaps + greedy",
+      "targets": "Top K, K-way merge, two heaps, interval greedy",
+      "problems": "10-12"
+    },
+    {
+      "week": 10,
+      "focus": "Backtracking + trie",
+      "targets": "Subsets, permutations, combinations, pruning, prefix search",
+      "problems": "8-10"
+    },
+    {
+      "week": 11,
+      "focus": "Dynamic programming I",
+      "targets": "1D take/skip, grid DP, coin change, subset/knapsack",
+      "problems": "10-12"
+    },
+    {
+      "week": 12,
+      "focus": "DP II + mixed mocks",
+      "targets": "LCS/edit distance/interval concepts + 45-minute mixed interview sets",
+      "problems": "8-10 + mocks"
+    }
+  ],
+  "daily_practice_format": [
+    "10 minutes: re-code yesterday's core template without notes.",
+    "20-30 minutes: attempt one new problem without solution help.",
+    "10 minutes: compare with the official/editorial approach and identify the missing insight.",
+    "15-25 minutes: solve or re-solve a second problem that uses the same pattern.",
+    "5 minutes: write one sentence: \"I should recognize this pattern when...\""
+  ],
+  "readiness_test": [
+    "You can solve most Easy problems in your mastered topics in 10-15 minutes.",
+    "You can usually classify a Medium problem into 1-2 likely patterns within 3-5 minutes.",
+    "You can write the core template without syntax searching.",
+    "You can explain time and space complexity before finishing the code.",
+    "You recover from pointer/index mistakes by tracing state rather than restarting randomly.",
+    "You can solve mixed sets without knowing the tagged topic in advance."
+  ],
+  "research_basis": [
+    {
+      "name": "LeetCode 75 Study Plan",
+      "url": "https://leetcode.com/studyplan/leetcode-75/",
+      "note": "75 essential/trending interview problems and a 1-3 month preparation path."
+    },
+    {
+      "name": "Top Interview 150",
+      "url": "https://leetcode.com/studyplan/top-interview-150/",
+      "note": "150 classic interview questions for comprehensive 3+ month preparation."
+    },
+    {
+      "name": "Binary Search Study Plan",
+      "url": "https://leetcode.com/studyplan/binary-search/",
+      "note": "Organizes binary search into 8 common patterns."
+    },
+    {
+      "name": "Graph Theory Study Plan",
+      "url": "https://leetcode.com/studyplan/graph-theory/",
+      "note": "8 essential graph topics and 45 graph problems."
+    },
+    {
+      "name": "Dynamic Programming Study Plan",
+      "url": "https://leetcode.com/studyplan/dynamic-programming/",
+      "note": "10 essential DP patterns with a beginner-friendly recursive learning approach."
+    }
+  ]
+}

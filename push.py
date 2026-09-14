@@ -26,9 +26,71 @@ class Confirmation(Enum):
 CONFIG_FILE = "git_config.json"
 PROGRESS_FILE = "progress.json"
 README_FILE = "README.md"
+DOCS_PROGRESS_FILE = os.path.join("docs", "progress.json")
 
 PROGRESS_START = "<!-- PROGRESS_START -->"
 PROGRESS_END = "<!-- PROGRESS_END -->"
+
+# Maps a progress.json problem number to the solution file that
+# holds its code. Kept explicit (rather than fuzzy-matched) because
+# a few problem names don't line up cleanly with their filenames.
+SOLUTION_FILE_MAP = {
+    "1": "arrays/Two Sum .py",
+    "2": "arrays/Best Time to Buy and Sell Stock.py",
+    "3": "arrays/Best Time to Buy and Sell Stock II.py",
+    "4": "arrays/Remove Duplicates from Sorted Array.py",
+    "5": "arrays/Product of Array Except Self.py",
+    "6": "arrays/Maximum Subarray.py",
+    "7": "arrays/Spiral Matrix.py",
+    "8": "arrays/Subarray Sum Equals K.py",
+    "9": "hashmaps/Contains Duplicate.py",
+    "10": "hashmaps/Valid Anagram.py",
+    "11": "hashmaps/Group Anagrams.py",
+    "12": "hashmaps/Longest Consecutive Sequence.py",
+    "13": "hashmaps/Insert Delete GetRandom O(1).py",
+    "14": "two_pointers/Valid Palindrome.py",
+    "15": "two_pointers/Valid Palindrome II.py",
+    "16": "two_pointers/Two Sum II - Input Array Is Sorted.py",
+    "17": "two_pointers/11. Container With Most Water.ipynb",
+    "18": "two_pointers/3Sum.py",
+    "19": "two_pointers/Trapping Rain Water.py",
+    "20": "sliding_window/Maximum Average Subarray I.py",
+    "21": "sliding_window/ Longest Substring Without Repeating Characters.py",
+    "22": "sliding_window/Minimum Size Subarray Sum.py",
+    "23": "sliding_window/Longest Repeating Character Replacement.py",
+    "24": "sliding_window/ Permutation in String.py",
+}
+
+# Maps a progress.json problem number to its primary pattern-handbook
+# topic id (docs/patterns.json) and LeetCode number, so the review app
+# can show recognition signals / templates / common mistakes alongside
+# the problem. Derived from the handbook's own LeetCode ladder tables.
+PROBLEM_TOPIC_MAP = {
+    "1": {"topic": "arrays-strings", "leetcode_number": 1},
+    "2": {"topic": "arrays-strings", "leetcode_number": 121},
+    "3": {"topic": "arrays-strings", "leetcode_number": 122},
+    "4": {"topic": "arrays-strings", "leetcode_number": 26},
+    "5": {"topic": "arrays-strings", "leetcode_number": 238},
+    "6": {"topic": "arrays-strings", "leetcode_number": 53},
+    "7": {"topic": "arrays-strings", "leetcode_number": 54},
+    "8": {"topic": "arrays-strings", "leetcode_number": 560},
+    "9": {"topic": "hash-maps-sets", "leetcode_number": 217},
+    "10": {"topic": "hash-maps-sets", "leetcode_number": 242},
+    "11": {"topic": "hash-maps-sets", "leetcode_number": 49},
+    "12": {"topic": "hash-maps-sets", "leetcode_number": 128},
+    "13": {"topic": "hash-maps-sets", "leetcode_number": 380},
+    "14": {"topic": "two-pointers", "leetcode_number": 125},
+    "15": {"topic": "two-pointers", "leetcode_number": 680},
+    "16": {"topic": "two-pointers", "leetcode_number": 167},
+    "17": {"topic": "two-pointers", "leetcode_number": 11},
+    "18": {"topic": "two-pointers", "leetcode_number": 15},
+    "19": {"topic": "two-pointers", "leetcode_number": 42},
+    "20": {"topic": "sliding-window", "leetcode_number": 643},
+    "21": {"topic": "sliding-window", "leetcode_number": 3},
+    "22": {"topic": "sliding-window", "leetcode_number": 209},
+    "23": {"topic": "sliding-window", "leetcode_number": 424},
+    "24": {"topic": "sliding-window", "leetcode_number": 567},
+}
 
 
 # =========================================================
@@ -437,6 +499,82 @@ def get_confirmation(message):
 # DSA progress tracking
 # =========================================================
 
+from datetime import date, timedelta
+
+def update_sm2(entry, quality):
+    """
+    Update spaced-repetition fields using
+    an SM-2-style review schedule.
+    """
+
+    if quality < 0 or quality > 5:
+        raise ValueError(
+            "Quality must be between 0 and 5."
+        )
+
+    repetitions = entry.get(
+        "repetitions",
+        0
+    )
+
+    interval = entry.get(
+        "interval",
+        1
+    )
+
+    ease_factor = entry.get(
+        "ease_factor",
+        2.5
+    )
+
+    if quality < 3:
+
+        repetitions = 0
+        interval = 1
+
+    else:
+
+        if repetitions == 0:
+            interval = 1
+
+        elif repetitions == 1:
+            interval = 6
+
+        else:
+            interval = round(
+                interval * ease_factor
+            )
+
+        repetitions += 1
+
+    ease_factor += (
+        0.1
+        - (5 - quality)
+        * (
+            0.08
+            + (5 - quality) * 0.02
+        )
+    )
+
+    ease_factor = max(
+        1.3,
+        ease_factor
+    )
+
+    entry["repetitions"] = repetitions
+    entry["interval"] = interval
+
+    entry["ease_factor"] = round(
+        ease_factor,
+        2
+    )
+
+    entry["next_review"] = (
+        date.today()
+        + timedelta(days=interval)
+    ).isoformat()
+
+    return entry
 
 def ask_problem_information():
     """
@@ -493,15 +631,33 @@ def ask_problem_information():
             except ValueError:
                 print(" Please enter Easy, Medium, or Hard.")
                 
-    def get_problem_pattern():  
+    def get_problem_pattern():
         while True:
             pattern = input( "Pattern/Topic: ").strip().title()
-            
+
             if pattern:
                     return pattern
             print(
                 "Pattern cannot be empty."
-            )            
+            )
+
+    def get_quality():
+        while True:
+            user_input = input(
+                "Rate your recall 0-5 "
+                "(0=blackout, 3=correct but hard, 5=perfect): "
+            ).strip()
+
+            try:
+                quality = int(user_input)
+            except ValueError:
+                print("Please enter a number from 0 to 5.")
+                continue
+
+            if 0 <= quality <= 5:
+                return quality
+
+            print("Please enter a number from 0 to 5.")
 
 
     
@@ -581,12 +737,15 @@ def ask_problem_information():
             )
 
             if confirm == Confirmation.YES:
+                quality = get_quality()
+
                 problem_info = {
                     "action": action.value,
                     "number": number,
                     "problem": entry["problem"],
                     "difficulty": entry["difficulty"],
                     "pattern": entry["pattern"],
+                    "quality": quality,
                 }
 
                 return problem_info
@@ -664,7 +823,6 @@ def ask_problem_information():
             print(
                 "Please choose a number from 1 to 6."
                 )
-            continue
        
        
         # Retrieve function from hashmap
@@ -788,6 +946,11 @@ def update_progress(info):
 
         entry["last_reviewed"] = today
 
+        quality = info.get("quality")
+
+        if quality is not None:
+            update_sm2(entry, quality)
+
         if entry["reviews"] >= 3:
 
             entry["mastery"] = "Mastered"
@@ -800,6 +963,13 @@ def update_progress(info):
             f" Review recorded for: "
             f"{entry['problem']}"
         )
+
+        if quality is not None:
+            print(
+                f" Next review: {entry['next_review']} "
+                f"(interval: {entry['interval']}d, "
+                f"ease: {entry['ease_factor']})"
+            )
 
     save_json(
         PROGRESS_FILE,
@@ -1159,6 +1329,80 @@ def update_readme():
 
 
 # =========================================================
+# Docs site data (GitHub Pages review app)
+# =========================================================
+
+def extract_code(path):
+    """
+    Read the solution source for a problem.
+
+    Supports plain .py files and .ipynb notebooks
+    (code cells are concatenated in order).
+
+    Returns None if the file is missing or unreadable.
+    """
+
+    if not path or not os.path.exists(path):
+        return None
+
+    if path.endswith(".ipynb"):
+
+        try:
+            with open(path, "r", encoding="utf-8") as file:
+                notebook = json.load(file)
+
+        except (json.JSONDecodeError, OSError):
+            return None
+
+        code_parts = []
+
+        for cell in notebook.get("cells", []):
+
+            if cell.get("cell_type") == "code":
+                source = "".join(cell.get("source", []))
+
+                if source.strip():
+                    code_parts.append(source)
+
+        return "\n\n".join(code_parts) if code_parts else None
+
+    with open(path, "r", encoding="utf-8") as file:
+        return file.read()
+
+
+def generate_docs_progress():
+    """
+    Build docs/progress.json for the GitHub Pages review app:
+    a copy of progress.json with each problem's solution code
+    embedded, so the static site never needs to fetch outside
+    of docs/.
+    """
+
+    progress = load_json(PROGRESS_FILE)
+
+    docs_data = {}
+
+    for number, entry in progress.items():
+
+        file_path = SOLUTION_FILE_MAP.get(number)
+        topic_info = PROBLEM_TOPIC_MAP.get(number, {})
+
+        docs_entry = dict(entry)
+        docs_entry["file"] = file_path
+        docs_entry["code"] = extract_code(file_path)
+        docs_entry["topic"] = topic_info.get("topic")
+        docs_entry["leetcode_number"] = topic_info.get("leetcode_number")
+
+        docs_data[number] = docs_entry
+
+    os.makedirs("docs", exist_ok=True)
+
+    save_json(DOCS_PROGRESS_FILE, docs_data)
+
+    print(" docs/progress.json generated.")
+
+
+# =========================================================
 # Git commit / push
 # =========================================================
 
@@ -1360,6 +1604,13 @@ def main():
 
     # -----------------------------------------------------
     # Step 6:
+    # Regenerate docs/progress.json for the review app
+    # -----------------------------------------------------
+
+    generate_docs_progress()
+
+    # -----------------------------------------------------
+    # Step 7:
     # Commit and push
     # -----------------------------------------------------
 

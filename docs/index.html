@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DSA Learning Hub</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="app-header">
+    <h1>DSA Learning Hub</h1>
+    <div class="stats" id="stats"></div>
+  </header>
+
+  <main>
+    <section id="list-view">
+      <div class="list-section">
+        <h2>Due for Review <span class="count" id="due-count"></span></h2>
+        <div id="due-list" class="problem-list"></div>
+      </div>
+      <div class="list-section">
+        <h2>Upcoming</h2>
+        <div id="upcoming-list" class="problem-list"></div>
+      </div>
+      <div class="list-section" id="up-next-section"></div>
+    </section>
+
+    <section id="review-view" class="hidden">
+      <button id="back-btn" class="btn-secondary">&larr; Back to list</button>
+
+      <div class="review-card">
+        <div class="review-header">
+          <span class="badge difficulty" id="rv-difficulty"></span>
+          <span class="badge pattern" id="rv-pattern"></span>
+          <a id="rv-lc-link" class="lc-link" href="#" target="_blank" rel="noopener">View on LeetCode &#8599;</a>
+        </div>
+        <h2 id="rv-title"></h2>
+        <p class="meta" id="rv-meta"></p>
+
+        <div class="tab-bar" role="tablist">
+          <button class="tab-btn active" data-tab="problem" type="button">Problem</button>
+          <button class="tab-btn" data-tab="solution" type="button">Solution</button>
+          <button class="tab-btn" data-tab="pattern" type="button">Pattern</button>
+        </div>
+
+        <div id="tab-problem" class="tab-panel">
+          <div id="problem-content" class="problem-content"></div>
+        </div>
+
+        <div id="tab-solution" class="tab-panel hidden">
+          <button id="reveal-btn" class="btn-primary">Reveal Solution</button>
+          <pre id="code-block" class="code-block hidden"><code id="code-content"></code></pre>
+
+          <div id="rating-section" class="rating-section hidden">
+            <h3>How well did you recall it?</h3>
+            <div class="rating-buttons" id="rating-buttons"></div>
+          </div>
+
+          <div id="result-section" class="result-section hidden"></div>
+        </div>
+
+        <div id="tab-pattern" class="tab-panel hidden">
+          <div id="pattern-guide" class="pattern-guide"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
