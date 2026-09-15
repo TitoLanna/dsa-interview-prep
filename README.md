@@ -39,10 +39,10 @@ A structured Data Structures & Algorithms practice log, paired with **DSA Git As
 
 ### Statistics
 
-- Problems completed: **24**
+- Problems completed: **25**
 - Easy: **8**
 - Medium: **14**
-- Hard: **1**
+- Hard: **2**
 - Total reviews: **7**
 - Mastered: **0**
 
@@ -74,6 +74,7 @@ A structured Data Structures & Algorithms practice log, paired with **DSA Git As
 | 22 | Minimum Size Subarray Sum | Medium | Sliding Window | 2026-09-07 | 1 | 2026-09-14 |  Reviewing |
 | 23 | Longest Repeating Character Replacement | Meduim | Window Invariant | 2026-09-09 | 0 | - |  Learning |
 | 24 | Permutation in String | Medium | Frequency Window | 2026-09-13 | 0 | - |  Learning |
+| 25 | Minimum Window Substring | Hard | Minimum Covering Window | 2026-09-15 | 0 | - |  Learning |
 
 <!-- PROGRESS_END -->` markers, so automation and manual edits never conflict.
 - **Defensive sync before push** — Pulling with `--allow-unrelated-histories` before pushing handles the common case of a GitHub repo created with an initial commit (e.g., a README or license) that the local repo doesn't share history with.
