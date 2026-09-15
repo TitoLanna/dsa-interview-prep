@@ -43,7 +43,7 @@ A structured Data Structures & Algorithms practice log, paired with **DSA Git As
 - Easy: **8**
 - Medium: **14**
 - Hard: **2**
-- Total reviews: **7**
+- Total reviews: **8**
 - Mastered: **0**
 
 ### Problem Log
@@ -73,7 +73,7 @@ A structured Data Structures & Algorithms practice log, paired with **DSA Git As
 | 21 | Longest Substring Without Repeating Characters | Medium | Hash Table/ Sliding Window | 2026-09-06 | 1 | 2026-09-14 |  Reviewing |
 | 22 | Minimum Size Subarray Sum | Medium | Sliding Window | 2026-09-07 | 1 | 2026-09-14 |  Reviewing |
 | 23 | Longest Repeating Character Replacement | Meduim | Window Invariant | 2026-09-09 | 0 | - |  Learning |
-| 24 | Permutation in String | Medium | Frequency Window | 2026-09-13 | 0 | - |  Learning |
+| 24 | Permutation in String | Medium | Frequency Window | 2026-09-13 | 1 | 2026-09-15 |  Reviewing |
 | 25 | Minimum Window Substring | Hard | Minimum Covering Window | 2026-09-15 | 0 | - |  Learning |
 
 <!-- PROGRESS_END -->` markers, so automation and manual edits never conflict.
