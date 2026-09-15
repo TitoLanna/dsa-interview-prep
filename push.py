@@ -1,5 +1,6 @@
 import json
 import os
+import re
 import subprocess
 import sys
 from datetime import date
@@ -1275,9 +1276,27 @@ def update_readme():
 
         content = file.read()
 
+    start_pattern = re.compile(
+        r"^[ \t]*"
+        + re.escape(PROGRESS_START)
+        + r"[ \t]*$",
+        re.MULTILINE
+    )
+
+    end_pattern = re.compile(
+        r"^[ \t]*"
+        + re.escape(PROGRESS_END)
+        + r"[ \t]*$",
+        re.MULTILINE
+    )
+
+    start_match = start_pattern.search(content)
+    end_match = end_pattern.search(content)
+
     if (
-        PROGRESS_START not in content
-        or PROGRESS_END not in content
+        start_match is None
+        or end_match is None
+        or start_match.start() > end_match.start()
     ):
 
         print(
@@ -1293,15 +1312,9 @@ def update_readme():
         )
     )
 
-    before = content.split(
-        PROGRESS_START,
-        1
-    )[0]
+    before = content[:start_match.start()]
 
-    after = content.split(
-        PROGRESS_END,
-        1
-    )[1]
+    after = content[end_match.end():]
 
     new_content = (
         before
