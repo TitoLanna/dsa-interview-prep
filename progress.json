@@ -245,5 +245,14 @@
         "reviews": 0,
         "last_reviewed": null,
         "mastery": "Learning"
+    },
+    "28": {
+        "problem": "Evaluate Reverse Polish Notation",
+        "difficulty": "Medium",
+        "pattern": "Expression Stack",
+        "solved": "2026-09-21",
+        "reviews": 0,
+        "last_reviewed": null,
+        "mastery": "Learning"
     }
 }

@@ -73,9 +73,9 @@ The script will:
 
 ### Statistics
 
-- Problems completed: **27**
+- Problems completed: **28**
 - Easy: **9**
-- Medium: **15**
+- Medium: **16**
 - Hard: **2**
 - Total reviews: **8**
 - Mastered: **0**
@@ -111,6 +111,7 @@ The script will:
 | 25 | Minimum Window Substring | Hard | Minimum Covering Window | 2026-09-15 | 0 | - |  Learning |
 | 26 | Valid Parentheses | Easy | Stack | 2026-09-21 | 0 | - |  Learning |
 | 27 | Min stack | Medium | Augmented Stack State | 2026-09-21 | 0 | - |  Learning |
+| 28 | Evaluate Reverse Polish Notation | Medium | Expression Stack | 2026-09-21 | 0 | - |  Learning |
 
 <!-- PROGRESS_END -->
 

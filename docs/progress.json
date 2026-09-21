@@ -353,5 +353,18 @@
         "code": null,
         "topic": null,
         "leetcode_number": null
+    },
+    "28": {
+        "problem": "Evaluate Reverse Polish Notation",
+        "difficulty": "Medium",
+        "pattern": "Expression Stack",
+        "solved": "2026-09-21",
+        "reviews": 0,
+        "last_reviewed": null,
+        "mastery": "Learning",
+        "file": null,
+        "code": null,
+        "topic": null,
+        "leetcode_number": null
     }
 }
