@@ -73,9 +73,9 @@ The script will:
 
 ### Statistics
 
-- Problems completed: **26**
+- Problems completed: **27**
 - Easy: **9**
-- Medium: **14**
+- Medium: **15**
 - Hard: **2**
 - Total reviews: **8**
 - Mastered: **0**
@@ -110,6 +110,7 @@ The script will:
 | 24 | Permutation in String | Medium | Frequency Window | 2026-09-13 | 1 | 2026-09-15 |  Reviewing |
 | 25 | Minimum Window Substring | Hard | Minimum Covering Window | 2026-09-15 | 0 | - |  Learning |
 | 26 | Valid Parentheses | Easy | Stack | 2026-09-21 | 0 | - |  Learning |
+| 27 | Min stack | Medium | Augmented Stack State | 2026-09-21 | 0 | - |  Learning |
 
 <!-- PROGRESS_END -->
 

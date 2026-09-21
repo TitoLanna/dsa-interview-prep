@@ -16,11 +16,10 @@ def isValid(s):
     for char in s:
         if char in brackets:
             stack.append(char)
+            #Take note of the fact that you passed the stack value as a key in the hashmap to find the value and compare it
         elif stack and brackets[stack[-1]] == char:
             stack.pop()
         else:
             return False
     return True if not stack else False 
               
-
-print(isValid("[]{}()"))
