@@ -73,8 +73,8 @@ The script will:
 
 ### Statistics
 
-- Problems completed: **25**
-- Easy: **8**
+- Problems completed: **26**
+- Easy: **9**
 - Medium: **14**
 - Hard: **2**
 - Total reviews: **8**
@@ -109,6 +109,7 @@ The script will:
 | 23 | Longest Repeating Character Replacement | Meduim | Window Invariant | 2026-09-09 | 0 | - |  Learning |
 | 24 | Permutation in String | Medium | Frequency Window | 2026-09-13 | 1 | 2026-09-15 |  Reviewing |
 | 25 | Minimum Window Substring | Hard | Minimum Covering Window | 2026-09-15 | 0 | - |  Learning |
+| 26 | Valid Parentheses | Easy | Stack | 2026-09-21 | 0 | - |  Learning |
 
 <!-- PROGRESS_END -->
 
