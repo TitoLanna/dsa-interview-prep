@@ -73,9 +73,9 @@ The script will:
 
 ### Statistics
 
-- Problems completed: **28**
+- Problems completed: **29**
 - Easy: **9**
-- Medium: **16**
+- Medium: **17**
 - Hard: **2**
 - Total reviews: **8**
 - Mastered: **0**
@@ -112,6 +112,7 @@ The script will:
 | 26 | Valid Parentheses | Easy | Stack | 2026-09-21 | 0 | - |  Learning |
 | 27 | Min stack | Medium | Augmented Stack State | 2026-09-21 | 0 | - |  Learning |
 | 28 | Evaluate Reverse Polish Notation | Medium | Expression Stack | 2026-09-21 | 0 | - |  Learning |
+| 29 | Daily Temperatures | Medium | Monotonic Stack | 2026-09-21 | 0 | - |  Learning |
 
 <!-- PROGRESS_END -->
 

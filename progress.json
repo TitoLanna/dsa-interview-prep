@@ -254,5 +254,14 @@
         "reviews": 0,
         "last_reviewed": null,
         "mastery": "Learning"
+    },
+    "29": {
+        "problem": "Daily Temperatures",
+        "difficulty": "Medium",
+        "pattern": "Monotonic Stack",
+        "solved": "2026-09-21",
+        "reviews": 0,
+        "last_reviewed": null,
+        "mastery": "Learning"
     }
 }

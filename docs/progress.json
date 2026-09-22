@@ -366,5 +366,18 @@
         "code": null,
         "topic": null,
         "leetcode_number": null
+    },
+    "29": {
+        "problem": "Daily Temperatures",
+        "difficulty": "Medium",
+        "pattern": "Monotonic Stack",
+        "solved": "2026-09-21",
+        "reviews": 0,
+        "last_reviewed": null,
+        "mastery": "Learning",
+        "file": null,
+        "code": null,
+        "topic": null,
+        "leetcode_number": null
     }
 }
