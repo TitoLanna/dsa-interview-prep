@@ -263,5 +263,14 @@
         "reviews": 0,
         "last_reviewed": null,
         "mastery": "Learning"
+    },
+    "30": {
+        "problem": "Final Prices With a Special Discount in a Shop",
+        "difficulty": "Easy",
+        "pattern": "Monotonic Stack",
+        "solved": "2026-09-21",
+        "reviews": 0,
+        "last_reviewed": null,
+        "mastery": "Learning"
     }
 }

@@ -73,8 +73,8 @@ The script will:
 
 ### Statistics
 
-- Problems completed: **29**
-- Easy: **9**
+- Problems completed: **30**
+- Easy: **10**
 - Medium: **17**
 - Hard: **2**
 - Total reviews: **8**
@@ -113,6 +113,7 @@ The script will:
 | 27 | Min stack | Medium | Augmented Stack State | 2026-09-21 | 0 | - |  Learning |
 | 28 | Evaluate Reverse Polish Notation | Medium | Expression Stack | 2026-09-21 | 0 | - |  Learning |
 | 29 | Daily Temperatures | Medium | Monotonic Stack | 2026-09-21 | 0 | - |  Learning |
+| 30 | Final Prices With a Special Discount in a Shop | Easy | Monotonic Stack | 2026-09-21 | 0 | - |  Learning |
 
 <!-- PROGRESS_END -->
 
