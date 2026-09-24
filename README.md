@@ -73,9 +73,9 @@ The script will:
 
 ### Statistics
 
-- Problems completed: **30**
+- Problems completed: **31**
 - Easy: **10**
-- Medium: **17**
+- Medium: **18**
 - Hard: **2**
 - Total reviews: **8**
 - Mastered: **0**
@@ -114,6 +114,7 @@ The script will:
 | 28 | Evaluate Reverse Polish Notation | Medium | Expression Stack | 2026-09-21 | 0 | - |  Learning |
 | 29 | Daily Temperatures | Medium | Monotonic Stack | 2026-09-21 | 0 | - |  Learning |
 | 30 | Final Prices With a Special Discount in a Shop | Easy | Monotonic Stack | 2026-09-21 | 0 | - |  Learning |
+| 31 | Sort Colors | Medium | Haspmaps | 2026-09-23 | 0 | - |  Learning |
 
 <!-- PROGRESS_END -->
 

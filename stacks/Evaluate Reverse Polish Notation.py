@@ -1,20 +1,4 @@
-"""
-You are given an array of strings tokens that represents an arithmetic expression in a Reverse Polish Notation.
 
-Evaluate the expression. Return an integer that represents the value of the expression.
-
-Note that:
-Reverse polish notation is a mathematical notation in which operators follow their operands (e.g. 
-3 4 +), in contrast to the more common infix notation (in which operators are placed between operands, e.g. 3+4
-, as well as prefix notation (in which operators precede their operands, e.g. (+3 4)
-
-The valid operators are '+', '-', '*', and '/'.
-Each operand may be an integer or another expression.
-The division between two integers always truncates toward zero.
-There will not be any division by zero.
-The input represents a valid arithmetic expression in a reverse polish notation.
-The answer and all the intermediate calculations can be represented in a 32-bit integer.
-"""
 
 def reverse_polish_notation(arr):
     """
