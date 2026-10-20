@@ -290,5 +290,14 @@
         "reviews": 0,
         "last_reviewed": null,
         "mastery": "Learning"
+    },
+    "33": {
+        "problem": "Reorder List",
+        "difficulty": "Medium",
+        "pattern": "Linkedlist",
+        "solved": "2026-10-19",
+        "reviews": 0,
+        "last_reviewed": null,
+        "mastery": "Learning"
     }
 }

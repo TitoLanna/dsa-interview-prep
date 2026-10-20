@@ -9,6 +9,9 @@ You must solve this problem without using the library's sort function.
 def sortColors(nums):
     """
     Solving this problem using a hashmap
+    
+    Time: O(n)
+    space: O(1)
     """
     
     hashmap ={}
