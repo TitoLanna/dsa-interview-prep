@@ -299,5 +299,14 @@
         "reviews": 0,
         "last_reviewed": null,
         "mastery": "Learning"
+    },
+    "34": {
+        "problem": "Remove Duplicates from Sorted List",
+        "difficulty": "Easy",
+        "pattern": "Linkedlist",
+        "solved": "2026-10-21",
+        "reviews": 0,
+        "last_reviewed": null,
+        "mastery": "Learning"
     }
 }

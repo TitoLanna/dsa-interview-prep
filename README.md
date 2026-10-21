@@ -73,8 +73,8 @@ The script will:
 
 ### Statistics
 
-- Problems completed: **33**
-- Easy: **10**
+- Problems completed: **34**
+- Easy: **11**
 - Medium: **20**
 - Hard: **2**
 - Total reviews: **8**
@@ -117,6 +117,7 @@ The script will:
 | 31 | Sort Colors | Medium | Haspmaps | 2026-09-23 | 0 | - |  Learning |
 | 32 | Add Two Numbers | Medium | Recursion/Linkedlist | 2026-10-03 | 0 | - |  Learning |
 | 33 | Reorder List | Medium | Linkedlist | 2026-10-19 | 0 | - |  Learning |
+| 34 | Remove Duplicates from Sorted List | Easy | Linkedlist | 2026-10-21 | 0 | - |  Learning |
 
 <!-- PROGRESS_END -->
 
