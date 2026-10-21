@@ -46,3 +46,19 @@ class LinkedList:
             cur = cur.next
 
         print(" -> ".join(result))
+    def list_search(self,head,value):
+        """
+        This function takes the head:'x' of a linkedlist and a value:'x.val'.
+        And returns the node at which that value is 
+
+        Args: head,value
+        
+        Returns: Node
+        """
+        cur = head
+        count =1
+        while cur and cur.val!=value:
+            count+=1
+            cur=cur.next
+        return cur,count if cur else None
+        

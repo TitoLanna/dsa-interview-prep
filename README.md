@@ -73,9 +73,9 @@ The script will:
 
 ### Statistics
 
-- Problems completed: **34**
+- Problems completed: **35**
 - Easy: **11**
-- Medium: **20**
+- Medium: **21**
 - Hard: **2**
 - Total reviews: **8**
 - Mastered: **0**
@@ -118,6 +118,7 @@ The script will:
 | 32 | Add Two Numbers | Medium | Recursion/Linkedlist | 2026-10-03 | 0 | - |  Learning |
 | 33 | Reorder List | Medium | Linkedlist | 2026-10-19 | 0 | - |  Learning |
 | 34 | Remove Duplicates from Sorted List | Easy | Linkedlist | 2026-10-21 | 0 | - |  Learning |
+| 35 | Reverse Linked List II | Medium | Partial Reversal | 2026-10-21 | 0 | - |  Learning |
 
 <!-- PROGRESS_END -->
 

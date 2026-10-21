@@ -31,6 +31,8 @@ if __name__ == "__main__":
     print("Before:",ll.display())
     head = ll.get_head()
     solution = Solution().deleteDuplicates(head)
+    found_at,address = ll.list_search(head,3)
+    print("Search:",found_at," found at:",address)
     print("After",ll.display())
     
     

@@ -444,5 +444,18 @@
         "code": null,
         "topic": null,
         "leetcode_number": null
+    },
+    "35": {
+        "problem": "Reverse Linked List II",
+        "difficulty": "Medium",
+        "pattern": "Partial Reversal",
+        "solved": "2026-10-21",
+        "reviews": 0,
+        "last_reviewed": null,
+        "mastery": "Learning",
+        "file": null,
+        "code": null,
+        "topic": null,
+        "leetcode_number": null
     }
 }
