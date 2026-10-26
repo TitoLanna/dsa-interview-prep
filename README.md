@@ -73,8 +73,8 @@ The script will:
 
 ### Statistics
 
-- Problems completed: **35**
-- Easy: **11**
+- Problems completed: **36**
+- Easy: **12**
 - Medium: **21**
 - Hard: **2**
 - Total reviews: **8**
@@ -119,6 +119,7 @@ The script will:
 | 33 | Reorder List | Medium | Linkedlist | 2026-10-19 | 0 | - |  Learning |
 | 34 | Remove Duplicates from Sorted List | Easy | Linkedlist | 2026-10-21 | 0 | - |  Learning |
 | 35 | Reverse Linked List II | Medium | Partial Reversal | 2026-10-21 | 0 | - |  Learning |
+| 36 | Remove Linked List Element | Easy | Linkedlist | 2026-10-26 | 0 | - |  Learning |
 
 <!-- PROGRESS_END -->
 

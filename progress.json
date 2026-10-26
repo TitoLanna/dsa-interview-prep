@@ -317,5 +317,14 @@
         "reviews": 0,
         "last_reviewed": null,
         "mastery": "Learning"
+    },
+    "36": {
+        "problem": "Remove Linked List Element",
+        "difficulty": "Easy",
+        "pattern": "Linkedlist",
+        "solved": "2026-10-26",
+        "reviews": 0,
+        "last_reviewed": null,
+        "mastery": "Learning"
     }
 }

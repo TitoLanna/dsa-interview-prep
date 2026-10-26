@@ -61,4 +61,15 @@ class LinkedList:
             count+=1
             cur=cur.next
         return cur,count if cur else None
+    def list_prepend(self,new_node):
+        """ 
+        This functions take a node and a inserts it as the head of the linked list
+        
+        Args:New_node
+        Returns:
+        
+        """
+        new_node.next = self.head
+        if not self.head:
+            self.set_head(new_node)
         
