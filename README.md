@@ -73,9 +73,9 @@ The script will:
 
 ### Statistics
 
-- Problems completed: **37**
+- Problems completed: **38**
 - Easy: **12**
-- Medium: **22**
+- Medium: **23**
 - Hard: **2**
 - Total reviews: **8**
 - Mastered: **0**
@@ -121,6 +121,7 @@ The script will:
 | 35 | Reverse Linked List II | Medium | Partial Reversal | 2026-10-21 | 0 | - |  Learning |
 | 36 | Remove Linked List Element | Easy | Linkedlist | 2026-10-26 | 0 | - |  Learning |
 | 37 | Remove Nth Node From End of List | Medium | Linkedlist/Two Pointer | 2026-10-26 | 0 | - |  Learning |
+| 38 | Delete Node in a linked list | Medium | Linked List | 2026-10-27 | 0 | - |  Learning |
 
 <!-- PROGRESS_END -->
 
