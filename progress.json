@@ -326,5 +326,14 @@
         "reviews": 0,
         "last_reviewed": null,
         "mastery": "Learning"
+    },
+    "37": {
+        "problem": "Remove Nth Node From End of List",
+        "difficulty": "Medium",
+        "pattern": "Linkedlist/Two Pointer",
+        "solved": "2026-10-26",
+        "reviews": 0,
+        "last_reviewed": null,
+        "mastery": "Learning"
     }
 }
