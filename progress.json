@@ -353,5 +353,14 @@
         "reviews": 0,
         "last_reviewed": null,
         "mastery": "Learning"
+    },
+    "40": {
+        "problem": "Merge k sorted Lists",
+        "difficulty": "Hard",
+        "pattern": "Heap/Divde And Conquer",
+        "solved": "2026-10-29",
+        "reviews": 0,
+        "last_reviewed": null,
+        "mastery": "Learning"
     }
 }

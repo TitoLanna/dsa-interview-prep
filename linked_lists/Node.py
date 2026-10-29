@@ -30,6 +30,15 @@ class LinkedList:
         cur.next = Node(new_node)
 
     def makeLinkedList(self, arr):
+        """ 
+        This function takes in an array and makes a linked List
+        <br>and returns the head node of the linked list
+        
+        Args:
+            example: Array[1,2,6,3,4,5,6]
+        
+        Returns: 1
+        """
         self.head = None
 
         for value in arr:
@@ -48,10 +57,11 @@ class LinkedList:
         print(" -> ".join(result))
     def list_search(self,head,value):
         """
-        This function takes the head:'x' of a linkedlist and a value:'x.val'.
+        This function takes the head:'x' of a linkedlist and a value:'x.val'.<br/>
         And returns the node at which that value is 
-
-        Args: head,value
+        
+        
+        Args:head,value
         
         Returns: Node
         """

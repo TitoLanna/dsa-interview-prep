@@ -73,10 +73,10 @@ The script will:
 
 ### Statistics
 
-- Problems completed: **39**
+- Problems completed: **40**
 - Easy: **13**
 - Medium: **23**
-- Hard: **2**
+- Hard: **3**
 - Total reviews: **8**
 - Mastered: **0**
 
@@ -123,6 +123,7 @@ The script will:
 | 37 | Remove Nth Node From End of List | Medium | Linkedlist/Two Pointer | 2026-10-26 | 0 | - |  Learning |
 | 38 | Delete Node in a linked list | Medium | Linked List | 2026-10-27 | 0 | - |  Learning |
 | 39 | Merge Two Sorted Lists | Easy | Merge | 2026-10-27 | 0 | - |  Learning |
+| 40 | Merge k sorted Lists | Hard | Heap/Divde And Conquer | 2026-10-29 | 0 | - |  Learning |
 
 <!-- PROGRESS_END -->
 
