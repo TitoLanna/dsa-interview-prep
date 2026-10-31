@@ -511,9 +511,9 @@
         "leetcode_number": null
     },
     "40": {
-        "problem": "Merge k sorted Lists",
-        "difficulty": "Hard",
-        "pattern": "Heap/Divde And Conquer",
+        "problem": "Remove Duplicates from Sorted List II",
+        "difficulty": "Medium",
+        "pattern": "Linkedlist",
         "solved": "2026-10-29",
         "reviews": 0,
         "last_reviewed": null,
