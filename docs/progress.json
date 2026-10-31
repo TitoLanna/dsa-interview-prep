@@ -522,5 +522,18 @@
         "code": null,
         "topic": null,
         "leetcode_number": null
+    },
+    "41": {
+        "problem": "Remove Duplicates from Sorted List 2",
+        "difficulty": "Medium",
+        "pattern": "Linked List",
+        "solved": "2026-10-31",
+        "reviews": 0,
+        "last_reviewed": null,
+        "mastery": "Learning",
+        "file": null,
+        "code": null,
+        "topic": null,
+        "leetcode_number": null
     }
 }
