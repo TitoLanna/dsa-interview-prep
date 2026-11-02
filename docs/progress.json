@@ -548,5 +548,18 @@
         "code": null,
         "topic": null,
         "leetcode_number": null
+    },
+    "43": {
+        "problem": "Partition List",
+        "difficulty": "Medium",
+        "pattern": "Linkedlist",
+        "solved": "2026-11-02",
+        "reviews": 0,
+        "last_reviewed": null,
+        "mastery": "Learning",
+        "file": null,
+        "code": null,
+        "topic": null,
+        "leetcode_number": null
     }
 }
