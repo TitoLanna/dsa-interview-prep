@@ -73,9 +73,9 @@ The script will:
 
 ### Statistics
 
-- Problems completed: **41**
+- Problems completed: **42**
 - Easy: **13**
-- Medium: **24**
+- Medium: **25**
 - Hard: **3**
 - Total reviews: **8**
 - Mastered: **0**
@@ -125,6 +125,7 @@ The script will:
 | 39 | Merge Two Sorted Lists | Easy | Merge | 2026-10-27 | 0 | - |  Learning |
 | 40 | Merge k sorted Lists | Hard | Heap/Divde And Conquer | 2026-10-29 | 0 | - |  Learning |
 | 41 | Remove Duplicates from Sorted List 2 | Medium | Linked List | 2026-10-31 | 0 | - |  Learning |
+| 42 | Swap Nodes in Pairs | Medium | Linked List | 2026-11-02 | 0 | - |  Learning |
 
 <!-- PROGRESS_END -->
 
