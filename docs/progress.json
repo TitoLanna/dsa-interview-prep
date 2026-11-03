@@ -561,5 +561,18 @@
         "code": null,
         "topic": null,
         "leetcode_number": null
+    },
+    "44": {
+        "problem": "Partition Array According to Given Pivot",
+        "difficulty": "Medium",
+        "pattern": "Array/Two Pointer",
+        "solved": "2026-11-03",
+        "reviews": 0,
+        "last_reviewed": null,
+        "mastery": "Learning",
+        "file": null,
+        "code": null,
+        "topic": null,
+        "leetcode_number": null
     }
 }
