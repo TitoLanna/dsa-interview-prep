@@ -398,5 +398,14 @@
         "reviews": 0,
         "last_reviewed": null,
         "mastery": "Learning"
+    },
+    "45": {
+        "problem": "LRU Cache",
+        "difficulty": "Medium",
+        "pattern": "Linkedlist/Hashmap",
+        "solved": "2026-11-03",
+        "reviews": 0,
+        "last_reviewed": null,
+        "mastery": "Learning"
     }
 }

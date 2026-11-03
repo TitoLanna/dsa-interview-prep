@@ -63,7 +63,7 @@ if __name__ =="__main__":
         ([5,4,3,2,1], 3, [2,1,5,4,3]),      # descending, order preserved in each part
         ([1,2,3,4,5], 3, [1,2,3,4,5]),      # already partitioned
         ([3,1,2], 3, [1,2,3]),              # x at the head
-        ([1,1,4,4,2,2], 3, [1,1,2,2,4,4]), # duplicates keep relative order
+        ([1,1,4,4,2,2], 3, [1,1,2,2,4,4]),  # duplicates keep relative order
         ([-1,5,-3,2], 0, [-1,-3,5,2]),      # negative values
     ]
 

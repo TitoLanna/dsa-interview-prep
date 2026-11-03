@@ -73,9 +73,9 @@ The script will:
 
 ### Statistics
 
-- Problems completed: **44**
+- Problems completed: **45**
 - Easy: **13**
-- Medium: **27**
+- Medium: **28**
 - Hard: **3**
 - Total reviews: **8**
 - Mastered: **0**
@@ -128,6 +128,7 @@ The script will:
 | 42 | Swap Nodes in Pairs | Medium | Linked List | 2026-11-02 | 0 | - |  Learning |
 | 43 | Partition List | Medium | Linkedlist | 2026-11-02 | 0 | - |  Learning |
 | 44 | Partition Array According to Given Pivot | Medium | Array/Two Pointer | 2026-11-03 | 0 | - |  Learning |
+| 45 | LRU Cache | Medium | Linkedlist/Hashmap | 2026-11-03 | 0 | - |  Learning |
 
 <!-- PROGRESS_END -->
 
